@@ -25,11 +25,24 @@
 
 .index-toplz>p {
     text-align: center;
-    width: 200px;
+    width: 190px;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     color: #e51c23;
+}
+
+.index-toplz>span {
+    display: flex;
+    align-items: center;
+}
+
+.index-toplz>span>i {
+    font-size: 20px;
+}
+
+.index-toplz>span>p {
+    cursor: pointer;
 }
 
 .index-toprimg {
