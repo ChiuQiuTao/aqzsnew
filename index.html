@@ -19,14 +19,8 @@
     <div class="index-top">
         <div class="index-topl">
             <div class="index-toplz">
-                <p>智慧管理平台</p>
-                <span>
-                    <i class="iconfont icon-xiazai" ></i>
-                    <div class="index-material"> 
-                        资料下载
-                    </div>
-                    <i class="iconfont icon-jiantousanjiaoxia"></i>
-                </span>
+                <p>服务交易</p>
+                <span>欢迎 <label>黄焱（1053385537）</label>用户登录供应链协同管理平台，这是您的第 <i>10</i>次登录</span>
             </div>
         </div>
         <div class="index-topr">
@@ -41,7 +35,7 @@
                 </div>
                 <div class="layui-nav-item two-in-data">
                     <a href="javascript:;">
-                      管理员（admin）
+                        管理员（admin）
                     </a>
                     <div></div>
                 </div>
@@ -54,15 +48,51 @@
 
             </div>
             <div class="layui-nav layui-layout-left two-in-title">
-                <div>sdsds</div>
+                <div class="nav-tabs">
+                    <div class="nav-left">
+                        <i class="iconfont icon-houtui nav-i"></i>
+                    </div>
+                    <div class="tabs">
+                        <div class="tabs-con">
+                            <div class="tabs-item tabs-item-this">
+                                <div class="dot"></div>
+                                首页
+                                <!-- <div class="tabs-close">×</div> -->
+
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="nav-r">
+                        <div class="nav-right">
+                            <i class="iconfont icon-kuaijin nav-i"></i>
+                        </div>
+                        <div class="nav-close">
+                            <i class="iconfont icon-yuanxingdacha nav-i"></i>
+
+                        </div>
+                        <div class="nav-exit">
+                            <i class="iconfont icon-tuichu nav-i"></i>
+                            退出
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-border">
+                    <img src="./img/colorr.png" alt="">
+                </div>
+                <div class="nav-background">
+                </div>
             </div>
+
+           
         </div>
         <!-- 上/头部 -->
         <div class="layui-side layui-bg-cyan two-in-menu">
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree layui-bg-cyan two-in-menu" id="twoinmenu" lay-filter="navtest">
-                    <li class="layui-nav-item two-in-menu-one" dataurl='./src/workbench.html'>
+                    <li class="layui-nav-item two-in-menu-one">
                         <i class="iconfont icon-webicon01"></i>
                         <label style="cursor: pointer;">工作台</label>
                         <i class="iconfont icon-jiantousanjiaoxia"></i>
@@ -89,7 +119,23 @@
         <div class="layui-body two-in-con">
             <!-- 内容主体区域 -->
             <div style="padding:10px;" class="two-in-coms">
-                <iframe scrolling="auto" src="./src/workbench.html" frameborder="0" id="contentsss" style="width:100%;height:100%;"></iframe>
+                <div class="work">
+                    <img src="./img/bjt.png" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">
+                        <div class="title-lt">工作台</div>
+                        <div class="title-rt">工作台</div>
+                    </div>
+
+                    <div class="content-nav">
+                        <div class="content-nav-item">
+                            信息管理
+                        </div>
+                    </div>
+                    <iframe scrolling="auto" src="" frameborder="0" id="contentsss" style="width:100%;height:100%;"></iframe>
+                </div>
+                
             </div>
         </div>
         <!-- 底部固定区域 -->
@@ -99,6 +145,7 @@
     </div>
     <script src="../../public/dist/layui.js"></script>
     <script>
+
         getClientHeight();
         //动态给高
         function getClientHeight() {
@@ -138,22 +185,129 @@
         document.querySelector(".two-in-menu ul>li:last-child").setAttribute("lay-unselect", "");
 
         // 左侧菜单
-        layui.use('element', function() {
+        layui.use('element', function () {
+            
             var $ = layui.$,
                 element = layui.element;
             element.init();
-            element.on('nav(navtest)', function(elem) {
-                var cun = elem[0].dataset.options
+            element.on('nav(navtest)', function (elem) {
+                // var navfrist = 
+                var cun = elem[0].dataset.options;
                 if (cun != undefined) {
-                    $("#contentsss").attr("src", cun)
+                    $("#contentsss").attr("src", cun);
+                    console.log(cun);
+                    console.log(elem.context.innerText);
+                    // var navItem = '<div class="tabs-item"><div class="dot"></div>'
+                    // +elem.context.innerText
+                    // +'<div class="tabs-close">×</div></div>'
+                    tabsItem = document.querySelectorAll('.tabs-item');
+                    
+                    for(var i=0;i<tabsItem.length;i++){
+                        var src = tabsItem[i].getAttribute('data-src');
+                        if(src == cun){
+                            document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+                            tabsItem[i].classList.add('tabs-item-this');
+                            return;
+                        }
+                    }
+                    document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+
+                    var navItem=document.createElement('div');
+                    navItem.setAttribute('class','tabs-item');
+                    navItem.classList.add('tabs-item-this')
+                    navItem.setAttribute('data-src',cun);
+                    navItem.innerHTML = '<div class="dot"></div>'
+                    +elem.context.innerText
+                    +'<div class="tabs-close">×</div>';
+                    document.querySelector('.tabs-con').appendChild(navItem);
+                    //选择 ID 为 #two 的 DIV 节点，在其后边添加一个 DIV 节点
+
+                    tabsItem = document.querySelectorAll('.tabs-item');
+                    chooseNavItem();
+                    navItemClose();
+
                 }
             });
-            $(".two-in-menu-one").click(function() {
-                $("#contentsss").attr("src", $(this).attr("dataurl"))
-            })
             element.render('nav');
+
+
         });
     </script>
+
+
 </body>
+<script>
+    var moveLeft = document.querySelector('.nav-left');
+    var moveRight = document.querySelector('.nav-right');
+    var tabsCon = document.querySelector('.tabs-con');
+    var left = 0;
+    moveLeft.addEventListener('click', function () {
+        if (left < -200) {
+            left = left + 200;
+        } else {
+            left = 0
+        }
+        tabsCon.style.left = left + 'px';
+    })
+    moveRight.addEventListener('click', function () {
+        // var tabsConW = tabsCon.clientWidth||tabsCon.offsetWidth;
+        // tabsConW = tabsConW - 200;
+        // tabsConW = 0-tabsConW
+        // console.log(tabsConW);
+        left = left - 200;
+        tabsCon.style.left = left + 'px';
+    })
+    chooseNavItem();
+    function chooseNavItem(){
+        var tabsItem = document.querySelectorAll('.tabs-item');
+        for(var i=0;i<tabsItem.length;i++){
+            (function(i){
+                tabsItem[i].addEventListener('click',function(){
+                    document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+                    tabsItem[i].classList.add('tabs-item-this');
+                    var src = tabsItem[i].getAttribute('data-src')
+                    document.getElementById('contentsss').setAttribute("src", src);
+                    navItemClose();
+                })
+            })(i)
+        }
+    }
+    navItemClose();
+    function navItemClose(){
+        var navItemClose = document.querySelectorAll('.tabs-close');
+        var tabsItem = document.querySelectorAll('.tabs-item');
+        for(var i=0;i<navItemClose.length;i++){
+            (function(i){
+                navItemClose[i].addEventListener('click',function(ev){
+                    // console.log(this.parentNode)
+                    this.parentNode.remove();
+                    
+                    navItemClose = document.querySelectorAll('.tabs-close');
+                    tabsItem = document.querySelectorAll('.tabs-item');
+                    if(!document.querySelector('.tabs-item-this')){
+                        // document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+                        tabsItem[i].classList.add('tabs-item-this');
+                        var src = tabsItem[i].getAttribute('data-src')
+                        document.getElementById('contentsss').setAttribute("src", src);
+                    }
+                    stopBubble(ev);
+                })
+            })(i)
+        }
+        // chooseNavItem();
+        // e.stopPropagation();
+        
+    }
+    function stopBubble(e) {
+        console.log(e);
+        //如果提供了事件对象，则这是一个非IE浏览器
+    if ( e && e.stopPropagation )
+        //因此它支持W3C的stopPropagation()方法
+        e.stopPropagation();
+    else
+    //否则，我们需要使用IE的方式来取消事件冒泡
+        window.event.cancelBubble = true;
+    }
+</script>
 
 </html>
