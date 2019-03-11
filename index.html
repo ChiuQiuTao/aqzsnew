@@ -54,11 +54,9 @@
                     </div>
                     <div class="tabs">
                         <div class="tabs-con">
-                            <div class="tabs-item tabs-item-this">
+                            <div class="tabs-item tabs-item-this" data-src='./src/workbench.html' data-title="首页">
                                 <div class="dot"></div>
                                 首页
-                                <!-- <div class="tabs-close">×</div> -->
-
                             </div>
                             
                             
@@ -70,7 +68,10 @@
                         </div>
                         <div class="nav-close">
                             <i class="iconfont icon-yuanxingdacha nav-i"></i>
-
+                            <div class="nav-close-dialog">
+                                <div class="nav-close-item" id='closeother'>关闭其他</div>
+                                <div class="nav-close-item" id='closeall'>关闭所有</div>
+                            </div>
                         </div>
                         <div class="nav-exit">
                             <i class="iconfont icon-tuichu nav-i"></i>
@@ -130,7 +131,7 @@
 
                     <div class="content-nav">
                         <div class="content-nav-item">
-                            信息管理
+                            首页
                         </div>
                     </div>
                     <iframe scrolling="auto" src="" frameborder="0" id="contentsss" style="width:100%;height:100%;"></iframe>
@@ -151,7 +152,6 @@
         function getClientHeight() {
             var clientHeight = 0;
             if (document.body.clientHeight && document.documentElement.clientHeight) {
-                // console.log(document.body.clientHeight)
                 var clientHeight = (document.body.clientHeight < document.documentElement.clientHeight) ? document.documentElement.clientHeight : document.body.clientHeight;
             } else {
                 var clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
@@ -168,7 +168,6 @@
             var meunchid = menudata[index].child;
             if (meunchid) {
                 for (const i in meunchid) {
-                    // console.log(meunchid[i].title)
                     child +=
                         '<dl class="layui-nav-child">' +
                         '<dd><a href="javascript:;" data-options="' + meunchid[i].url + '"><i class="iconfont icon-wanggeshitu"></i>' + meunchid[i].title + '</a></dd>' +
@@ -193,10 +192,9 @@
             element.on('nav(navtest)', function (elem) {
                 // var navfrist = 
                 var cun = elem[0].dataset.options;
+                // 添加导航
                 if (cun != undefined) {
                     $("#contentsss").attr("src", cun);
-                    console.log(cun);
-                    console.log(elem.context.innerText);
                     // var navItem = '<div class="tabs-item"><div class="dot"></div>'
                     // +elem.context.innerText
                     // +'<div class="tabs-close">×</div></div>'
@@ -207,25 +205,28 @@
                         if(src == cun){
                             document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
                             tabsItem[i].classList.add('tabs-item-this');
+                            document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title')
                             return;
                         }
                     }
-                    document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+                    if(document.querySelector('.tabs-item-this')&&document.querySelector('.tabs-item-this')!=''){
+                        document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
 
+                    }
                     var navItem=document.createElement('div');
                     navItem.setAttribute('class','tabs-item');
                     navItem.classList.add('tabs-item-this')
                     navItem.setAttribute('data-src',cun);
+                    navItem.setAttribute('data-title',elem.context.innerText);
+                    document.querySelector('.content-nav-item').innerHTML = elem.context.innerText
                     navItem.innerHTML = '<div class="dot"></div>'
                     +elem.context.innerText
                     +'<div class="tabs-close">×</div>';
                     document.querySelector('.tabs-con').appendChild(navItem);
-                    //选择 ID 为 #two 的 DIV 节点，在其后边添加一个 DIV 节点
 
                     tabsItem = document.querySelectorAll('.tabs-item');
                     chooseNavItem();
                     navItemClose();
-
                 }
             });
             element.render('nav');
@@ -237,6 +238,7 @@
 
 </body>
 <script>
+    // 左右滑动导航
     var moveLeft = document.querySelector('.nav-left');
     var moveRight = document.querySelector('.nav-right');
     var tabsCon = document.querySelector('.tabs-con');
@@ -250,13 +252,20 @@
         tabsCon.style.left = left + 'px';
     })
     moveRight.addEventListener('click', function () {
+        var tabs = document.querySelector('.tabs');
+        tabsW = tabs.clientWidth||tabs.offsetWidth;
+        tabsCon = document.querySelector('.tabs-con'); 
+        tabsConW = tabsCon.clientWidth||tabsCon.offsetWidth;
+        if(tabsConW>(tabsW-left)){
+            left = left - 200;
+            tabsCon.style.left = left + 'px';
+        }
         // var tabsConW = tabsCon.clientWidth||tabsCon.offsetWidth;
         // tabsConW = tabsConW - 200;
         // tabsConW = 0-tabsConW
-        // console.log(tabsConW);
-        left = left - 200;
-        tabsCon.style.left = left + 'px';
+        
     })
+    // 选择导航页面
     chooseNavItem();
     function chooseNavItem(){
         var tabsItem = document.querySelectorAll('.tabs-item');
@@ -265,13 +274,17 @@
                 tabsItem[i].addEventListener('click',function(){
                     document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
                     tabsItem[i].classList.add('tabs-item-this');
-                    var src = tabsItem[i].getAttribute('data-src')
+                    var src = tabsItem[i].getAttribute('data-src');
+                    var title = tabsItem[i].getAttribute('data-title');
                     document.getElementById('contentsss').setAttribute("src", src);
+                    document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title');
+                    navActive(i)
                     navItemClose();
                 })
             })(i)
         }
     }
+    // 关闭导航页面
     navItemClose();
     function navItemClose(){
         var navItemClose = document.querySelectorAll('.tabs-close');
@@ -279,7 +292,6 @@
         for(var i=0;i<navItemClose.length;i++){
             (function(i){
                 navItemClose[i].addEventListener('click',function(ev){
-                    // console.log(this.parentNode)
                     this.parentNode.remove();
                     
                     navItemClose = document.querySelectorAll('.tabs-close');
@@ -288,18 +300,35 @@
                         // document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
                         tabsItem[i].classList.add('tabs-item-this');
                         var src = tabsItem[i].getAttribute('data-src')
+                        document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title')
                         document.getElementById('contentsss').setAttribute("src", src);
+                        navActive(i)
                     }
                     stopBubble(ev);
                 })
             })(i)
         }
-        // chooseNavItem();
-        // e.stopPropagation();
-        
     }
+    // 选择顶部导航控住左边导航活动
+    function navActive(i){
+        var navChild = document.querySelectorAll('.layui-nav-child>dd>a');
+        var navCd = document.querySelectorAll('.layui-nav-child>dd');
+        var navItemed = document.querySelectorAll('.layui-nav-itemed');
+        for(var k=0;k<navItemed.length;k++){
+            navItemed[k].classList.remove('layui-nav-itemed');
+        }
+        if(document.querySelector('.layui-this')){
+            document.querySelector('.layui-this').classList.remove('layui-this');
+        }
+        for(var j=0;j<navChild.length;j++){
+            if(tabsItem[i].getAttribute('data-title') == navChild[j].innerText){
+                navCd[j].classList.add('layui-this');
+                navCd[j].parentNode.parentNode.classList.add('layui-nav-itemed');
+            }
+        }
+    }
+    // 禁止冒泡事件
     function stopBubble(e) {
-        console.log(e);
         //如果提供了事件对象，则这是一个非IE浏览器
     if ( e && e.stopPropagation )
         //因此它支持W3C的stopPropagation()方法
@@ -307,6 +336,72 @@
     else
     //否则，我们需要使用IE的方式来取消事件冒泡
         window.event.cancelBubble = true;
+    }
+
+
+    var navClose = document.querySelector('.nav-close');
+    var navCloseDialog = document.querySelector('.nav-close-dialog');
+    var closeOther = document.querySelector('#closeother');
+    var closeAll = document.querySelector('#closeall');
+    var indexNav = '<div class="tabs-item tabs-item-this" data-src="./src/workbench.html" data-title="首页"><div class="dot"></div>首页</div>';
+    var tabsCon = document.querySelector('.tabs-con');
+
+    navClose.addEventListener('mouseover',function(){
+        navCloseDialog.style.display = 'block'
+    })
+    navClose.addEventListener('mouseout',function(){
+        navCloseDialog.style.display = 'none'
+    })
+    // 关闭所有
+    closeAll.addEventListener('click',function(){
+        navCloseDialog.style.display = 'none';
+        tabsCon.innerHTML = indexNav;
+        document.getElementById('contentsss').setAttribute("src", './src/workbench.html');
+        document.querySelector('.content-nav-item').innerHTML = '首页';
+        var navItemed = document.querySelectorAll('.layui-nav-itemed');
+        for(var k=0;k<navItemed.length;k++){
+            navItemed[k].classList.remove('layui-nav-itemed');
+        }
+        if(document.querySelector('.layui-this')){
+            document.querySelector('.layui-this').classList.remove('layui-this');
+        }
+        chooseNavItem();
+        navItemClose();
+    })
+    // 关闭其他
+    closeOther.addEventListener('click',function(){
+        var tabsThis = document.querySelector('.tabs-item-this');
+        
+        var indexNavInner = '<div class="dot"></div>首页';
+        navCloseDialog.style.display = 'none';
+        if(tabsThis.getAttribute('data-src')=='./src/workbench.html'){
+            tabsCon.innerHTML = indexNav;
+        }else{
+            tabsCon.innerHTML = '<div class="tabs-item" data-src="./src/workbench.html" data-title="首页"><div class="dot"></div>首页</div>'+'<div class="tabs-item tabs-item-this" data-src="'
+            +tabsThis.getAttribute('data-src')
+            +'" data-title="'
+            +tabsThis.getAttribute('data-title')
+            +'">'
+            +tabsThis.innerHTML
+            +'</div>';
+        }
+        document.querySelector('.content-nav-item').innerHTML = document.querySelector('.tabs-item-this').getAttribute('data-title');
+        chooseNavItem();
+        navItemClose();
+    })
+    // 工作台
+    selectIndexNav();
+    function selectIndexNav(){
+        document.querySelector('.two-in-menu-one').addEventListener('click',function(){
+            var tabsItem = document.querySelectorAll('.tabs-item');
+            document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+            tabsItem[0].classList.add('tabs-item-this');
+            document.getElementById('contentsss').setAttribute("src", './src/workbench.html');
+            document.querySelector('.content-nav-item').innerHTML = '首页';
+            if(document.querySelector('.layui-this')){
+                document.querySelector('.layui-this').classList.remove('layui-this');
+            }
+        })
     }
 </script>
 
