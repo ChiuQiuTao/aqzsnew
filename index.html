@@ -272,14 +272,17 @@
         for(var i=0;i<tabsItem.length;i++){
             (function(i){
                 tabsItem[i].addEventListener('click',function(){
-                    document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+                    if(document.querySelector('.tabs-item-this')){
+                        document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
+                    }
                     tabsItem[i].classList.add('tabs-item-this');
                     var src = tabsItem[i].getAttribute('data-src');
                     var title = tabsItem[i].getAttribute('data-title');
                     document.getElementById('contentsss').setAttribute("src", src);
                     document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title');
                     navActive(i)
-                    navItemClose();
+                    // navItemClose();
+                    return;
                 })
             })(i)
         }
@@ -293,18 +296,28 @@
             (function(i){
                 navItemClose[i].addEventListener('click',function(ev){
                     this.parentNode.remove();
-                    
                     navItemClose = document.querySelectorAll('.tabs-close');
                     tabsItem = document.querySelectorAll('.tabs-item');
                     if(!document.querySelector('.tabs-item-this')){
                         // document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
-                        tabsItem[i].classList.add('tabs-item-this');
-                        var src = tabsItem[i].getAttribute('data-src')
-                        document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title')
+                        if(tabsItem[i]){
+                            tabsItem[i].classList.add('tabs-item-this');
+                            var src = tabsItem[i].getAttribute('data-src');
+                            document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title')
+
+                        }else{
+                            var tabsItem = document.querySelectorAll('.tabs-item');
+                            tabsItem[tabsItem.length-1].classList.add('tabs-item-this');
+                            var src = tabsItem[tabsItem.length-1].getAttribute('data-src');
+                            document.querySelector('.content-nav-item').innerHTML = tabsItem[tabsItem.length-1].getAttribute('data-title')
+
+                        }
                         document.getElementById('contentsss').setAttribute("src", src);
                         navActive(i)
                     }
+                    // chooseNavItem();
                     stopBubble(ev);
+                    return;
                 })
             })(i)
         }
