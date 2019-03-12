@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="icon" href="../public/favicon.ico">
+</head>
+
+<body>
+    <div class="backgroud-img">
+        <img src="../img/logoin.png">
+    </div>
+    <div class="background">
+        <canvas id="dot" style="background:rgba(0, 0, 0, 0);">
+        </canvas>
+    </div>
+    <div class="content">
+        <div class="head">
+            <div class="head-lt">JLFZFDA</div>
+            <div class="head-rt">
+                <div class='head-c'>吉林(中国-新加坡)食品区食品药品监督管理局保障体系综合监管平台</div>
+                <div class='head-p'>Jilin Food Zone Food And Drug Administration Security System Integrated Supervision Platform</div>
+            </div>
+        </div>
+        <div class="name">安全追溯平台—监管端</div>
+        <div class="welcome">欢迎登陆安全追溯平台！</div>
+        <div class="dialog">
+            <!-- <div class="title">供应链协同管理平台</div> -->
+            <div class="input">
+                <div class="input-title">
+                    用户名:
+                </div>
+                <input class="login-use" type="text" value="" placeholder="" maxlength="40">
+            </div>
+            <div class="input">
+                <div class="input-title">
+                    密码:
+                </div>
+                <input class="login-pass" type="password" value="" placeholder="" maxlength="50">
+            </div>
+            <div class="login-validation">
+                <div class="input-title login-valid">
+                    验证:
+                </div>
+                <div class="drag">
+                    <div class="bg"></div>
+                    <div class="text" onselectstart="return false;">请拖动滑块验证</div>
+                    <div class="btn">>></div>
+                </div>
+            </div>
+            <div class="password">
+                <div class="password-f">
+                    <a href="">忘记密码</a>
+                </div>
+                <div class="password-f">
+                    <a href="">专家注册</a>
+                </div>
+            </div>
+            <button class="login">登录</button>
+        </div>
+        <div class="tip">
+            Copyright Reserved 2017-2018 © 吉林 (中国—新加坡) 食品区 食品药品监督管理局 | 吉ICP备13023223号
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/login.js"></script>
+<script src="../public/dist/layui.js"></script>
+<script src="../js/apl.js"></script>
+<script>
+    layui.use('layer', function() { //独立版的layer无需执行这一句
+        var $ = layui.jquery,
+            layer = layui.layer; //独立版的layer无需执行这一句
+
+        $(".login").click(function() {
+            if (verify($(".login-use"), "请输入用户名!")) {
+                if ($(".login-pass").val() == "") {
+                    alerts("请输入密码！")
+                } else {
+                    if (!validation) {
+                        alerts("请拖拉验证!");
+                    } else {
+                        handleAjax('login', {
+                            username: $(".login-use").val(),
+                            password: $(".login-pass").val()
+                        }).done(function(resp) {
+                            // 当result为true的回调
+                            console.log(resp)
+                            window.location.href = "../index.html";
+                        }).fail(function(err) {
+                            // 当result为false的回调
+                            if (err.status == "400") {
+                                layer.msg('账号与密码不正确', {
+                                    icon: 5
+                                });
+                            }
+                        });
+                    }
+                }
+            }
+            return
+        })
+
+        /*验证*/
+        function verify(eles, tex) {
+            var str = eles.val().trim();
+            if (str.length == 0) {
+                alerts(tex)
+                eles.val("");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    })
+</script>

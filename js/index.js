@@ -141,6 +141,5 @@ var menudata = [{
                 title: "关于我们"
             },
         ]
-    },
-
+    }
 ]
