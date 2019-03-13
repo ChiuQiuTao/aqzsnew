@@ -133,7 +133,7 @@
                             首页
                         </div>
                     </div>
-                    <iframe scrolling="auto" src="" frameborder="0" id="contentsss" style="width:100%;height:100%;"></iframe>
+                    <iframe scrolling="auto" src="" frameborder="0" id="contentsss" style="width:100%;height:500px;"></iframe>
                 </div>
 
             </div>
@@ -215,10 +215,11 @@
                     navItem.setAttribute('class', 'tabs-item');
                     navItem.classList.add('tabs-item-this')
                     navItem.setAttribute('data-src', cun);
-                    navItem.setAttribute('data-title', elem.context.innerText);
-                    document.querySelector('.content-nav-item').innerHTML = elem.context.innerText
+                    console.log(elem[0].innerText)
+                    navItem.setAttribute('data-title', elem[0].innerText);
+                    document.querySelector('.content-nav-item').innerHTML = elem[0].innerText
                     navItem.innerHTML = '<div class="dot"></div>' +
-                        elem.context.innerText +
+                        elem[0].innerText +
                         '<div class="tabs-close">×</div>';
                     document.querySelector('.tabs-con').appendChild(navItem);
 
@@ -237,7 +238,7 @@
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/apl.js"></script>
-<script>
+<!-- <script>
     handleAjax('task/getAll', {
 
     }, "GET").done(function(resp) {
@@ -245,7 +246,7 @@
     }).fail(function(err) {
         console.log(err)
     });
-</script>
+</script> -->
 <script>
     // 左右滑动导航
     var moveLeft = document.querySelector('.nav-left');
