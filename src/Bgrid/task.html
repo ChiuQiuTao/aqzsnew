@@ -23,7 +23,7 @@
                         <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-    
+
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">巡检类别</label>
@@ -52,17 +52,6 @@
                         </div>
                     </div>
                 </div>
-    
-                <div class="layui-inline">
-                    <label class="layui-form-label">巡检时间</label>
-                    <div class="layui-input-inline">
-                        <input type="text" class="layui-input" id="date">
-                    </div>
-                    <div class="date-line"></div>
-                    <div class="layui-input-inline">
-                        <input type="text" class="layui-input" id="date1">
-                    </div>
-                </div>
 
 
                 <div class="layui-form-item">
@@ -76,6 +65,18 @@
                                 <option value="3">layim</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">巡检时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="date">
+                    </div>
+                    <div class="date-line"></div>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="date1">
                     </div>
                 </div>
 
@@ -99,86 +100,103 @@
             </div>
         </div>
     </form>
-    
-    <!-- <table class="layui-hide" id="test" lay-filter="test"></table>
-     -->
-    <!-- <div class="demoTable">
-        搜索ID：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+
+    <div class="select-btn taskwidth">
+        <div class="select-btn-item">
+            新增
+        </div>
+        <div class="select-btn-item">
+            修改
+        </div>
+        <div class="select-btn-item">
+            删除
+        </div>
     </div>
-    <button class="layui-btn" data-type="reload">搜索</button>
-    </div> -->
-    
+
     <div class="info-table">
-        <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
+        <div class="layui-form">
+            <table class="layui-table tabletr">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="checkbox-table">
+                                <input type="checkbox" name="layTableCheckbox" lay-skin="primary" lay-filter="layTableAllChoose">
+                                <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
+                                    <i class="layui-icon layui-icon-ok"></i>
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            方式
+                        </th>
+                        <th>民族</th>
+                        <th>出场时间</th>
+                        <th>格言</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            <div class="checkbox-table">
+                                <input type="checkbox" name="layTableCheckbox" lay-skin="primary" lay-filter="layTableAllChoose">
+                                <div class="layui-unselect layui-form-checkbox" lay-skin="primary">
+                                    <i class="layui-icon layui-icon-ok"></i>
+                                </div>
+                            </div>
+                        </th>
+                        <td>贤心</td>
+                        <td>汉族</td>
+                        <td>1989-10-14</td>
+                        <td>人生似修行</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="demo7"></div>
     </div>
 
     <script src="../../public/dist/layui.js"></script>
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/apl.js"></script>
-    <script>
-        
-        layui.use(['table','laydate'], function(){
-            var table = layui.table,
-            laydate = layui.laydate;
-            $ = layui.jquery;
-            
 
-            laydate.render({
-                elem: '#date' //指定元素
-            });
-           
-            handleAjax('task/getAll', {
+</html>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/apl.js"></script>
+<script>
+    handleAjax('task/getAll', {
 
-            }, "GET").done(function(resp) {
-                console.log(resp)
-            }).fail(function(err) {
-                console.log(err)
-            });
+    }, "GET").done(function(resp) {
+        console.log(resp)
+    }).fail(function(err) {
+        console.log(err)
+    });
+</script>
+<script>
+    layui.use(['table', 'laydate', 'laypage', 'layer'], function() {
+        var table = layui.table,
+            laydate = layui.laydate,
+            $ = layui.jquery,
+            laypage = layui.laypage,
+            layer = layui.layer;
 
-
-            //方法级渲染
-            table.render({
-            elem: '#LAY_table_user'
-            ,url: 'http://192.168.163.100:9193/task/getAll'
-            ,cols: [[
-                {radio: true, fixed: true}
-                ,{field:'username', title: '网格名称', width:100}
-                ,{field:'sex', title: '企业名称', width:100, sort: true}
-                ,{field:'city', title: '巡检类别', width:100}
-                ,{field:'sign', title: '指定巡检时间',width:120}
-                ,{field:'experience', title: '巡检人员', sort: true, width:100}
-                ,{field:'score', title: '指派人员', sort: true, width:100}
-                ,{field:'classify', title: '检查状态', width:100}
-            ]]
-            ,id: 'testReload'
-            ,page: true
-            ,height: 315
-            });
-            
-            var $ = layui.$, active = {
-            reload: function(){
-                var demoReload = $('#demoReload');
-                
-                //执行重载
-                table.reload('testReload', {
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                }
-                ,where: {
-                    key: {
-                    id: demoReload.val()
-                    }
-                }
-                });
+        laydate.render({
+            elem: '#date' //指定元素
+        });
+        //分页
+        laypage.render({
+            elem: 'demo7',
+            count: 500,
+            groups: 5,
+            theme: "#c81623",
+            layout: ['prev', 'page', 'next', 'count', 'skip'],
+            jump: function(obj) {
+                console.log(obj)
+                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                console.log(obj.limit); //得到每页显示的条数
             }
-            };
-            
-            $('.demoTable .layui-btn').on('click', function(){
+        });
+
+        $('.demoTable .layui-btn').on('click', function() {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
-            });
         });
-        </script>
-</html>
+    });
+</script>

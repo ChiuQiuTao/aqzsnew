@@ -1,10 +1,12 @@
-body{
+body {
     background-color: #fff;
 }
-.select{
-    margin: 15px;
+
+.select {
+    margin: 10px;
 }
-.select-title{
+
+.select-title {
     height: 40px;
     background-color: #c81623;
     padding-left: 20px;
@@ -12,51 +14,63 @@ body{
     color: #fff;
     font-size: 12px;
 }
-.select-con{
+
+.select-con {
     border: 1px solid #c9c9c9;
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 10px;
 }
-.layui-inline,.layui-form-item{
+
+.layui-inline,
+.layui-form-item {
     display: flex;
     align-items: center;
     margin-top: 10px;
     height: 25px;
 }
-.layui-form-label{
+
+.layui-form-label {
     font-size: 12px;
 }
-.layui-input-inline input{
+
+.layui-input-inline input {
     height: 25px;
     width: 180px;
 }
-.layui-input-inline select{
+
+.layui-input-inline select {
     width: 180px;
     padding-right: 10px;
 }
-.layui-form-select .layui-edge{
+
+.layui-form-select .layui-edge {
     right: 20px;
 }
-.layui-form-select dl{
+
+.layui-form-select dl {
     min-width: 180px;
 }
-.layui-form-item{
+
+.layui-form-item {
     margin-bottom: 0;
 }
-.date-line{
+
+.date-line {
     width: 20px;
     margin: 0 3px;
     background-color: #e9e9e9;
     height: 2px;
 }
-.select-btn{
+
+.select-btn {
     width: 150px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.select-btn-item{
+
+.select-btn-item {
     width: 60px;
     height: 22px;
     background-color: #ff0000;
@@ -69,13 +83,16 @@ body{
     margin-left: 20px;
     font-size: 12px;
 }
-.project-form{
+
+.project-form {
     width: 100%;
 }
-.project-form ul{
+
+.project-form ul {
     width: 100%;
 }
-.project-form li{
+
+.project-form li {
     width: 100%;
     display: block;
     list-style: none;
@@ -85,6 +102,31 @@ body{
     background-color: #eceaea;
     color: #414141;
 }
-.info-table{
-    margin: 15px;
+
+.info-table {
+    margin: 10px;
+}
+
+.taskwidth {
+    width: 200px;
+}
+
+.layui-form-label {
+    width: auto;
+}
+
+.layui-form-item .layui-inline {
+    margin-right: 0px;
+}
+
+.select-btn-item {
+    cursor: pointer;
+}
+
+.tabletr {
+    text-align: center;
+}
+
+.layui-table th {
+    text-align: center;
 }
