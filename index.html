@@ -58,8 +58,8 @@
                                 <div class="dot"></div>
                                 首页
                             </div>
-                            
-                            
+
+
                         </div>
                     </div>
                     <div class="nav-r">
@@ -74,8 +74,7 @@
                             </div>
                         </div>
                         <div class="nav-exit">
-                            <i class="iconfont icon-tuichu nav-i"></i>
-                            退出
+                            <i class="iconfont icon-tuichu nav-i"></i> 退出
                         </div>
                     </div>
                 </div>
@@ -86,7 +85,7 @@
                 </div>
             </div>
 
-           
+
         </div>
         <!-- 上/头部 -->
         <div class="layui-side layui-bg-cyan two-in-menu">
@@ -136,7 +135,7 @@
                     </div>
                     <iframe scrolling="auto" src="" frameborder="0" id="contentsss" style="width:100%;height:100%;"></iframe>
                 </div>
-                
+
             </div>
         </div>
         <!-- 底部固定区域 -->
@@ -146,7 +145,6 @@
     </div>
     <script src="../../public/dist/layui.js"></script>
     <script>
-
         getClientHeight();
         //动态给高
         function getClientHeight() {
@@ -184,12 +182,12 @@
         document.querySelector(".two-in-menu ul>li:last-child").setAttribute("lay-unselect", "");
 
         // 左侧菜单
-        layui.use('element', function () {
-            
+        layui.use('element', function() {
+
             var $ = layui.$,
                 element = layui.element;
             element.init();
-            element.on('nav(navtest)', function (elem) {
+            element.on('nav(navtest)', function(elem) {
                 // var navfrist = 
                 var cun = elem[0].dataset.options;
                 // 添加导航
@@ -199,29 +197,29 @@
                     // +elem.context.innerText
                     // +'<div class="tabs-close">×</div></div>'
                     tabsItem = document.querySelectorAll('.tabs-item');
-                    
-                    for(var i=0;i<tabsItem.length;i++){
+
+                    for (var i = 0; i < tabsItem.length; i++) {
                         var src = tabsItem[i].getAttribute('data-src');
-                        if(src == cun){
+                        if (src == cun) {
                             document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
                             tabsItem[i].classList.add('tabs-item-this');
                             document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title')
                             return;
                         }
                     }
-                    if(document.querySelector('.tabs-item-this')&&document.querySelector('.tabs-item-this')!=''){
+                    if (document.querySelector('.tabs-item-this') && document.querySelector('.tabs-item-this') != '') {
                         document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
 
                     }
-                    var navItem=document.createElement('div');
-                    navItem.setAttribute('class','tabs-item');
+                    var navItem = document.createElement('div');
+                    navItem.setAttribute('class', 'tabs-item');
                     navItem.classList.add('tabs-item-this')
-                    navItem.setAttribute('data-src',cun);
-                    navItem.setAttribute('data-title',elem.context.innerText);
+                    navItem.setAttribute('data-src', cun);
+                    navItem.setAttribute('data-title', elem.context.innerText);
                     document.querySelector('.content-nav-item').innerHTML = elem.context.innerText
-                    navItem.innerHTML = '<div class="dot"></div>'
-                    +elem.context.innerText
-                    +'<div class="tabs-close">×</div>';
+                    navItem.innerHTML = '<div class="dot"></div>' +
+                        elem.context.innerText +
+                        '<div class="tabs-close">×</div>';
                     document.querySelector('.tabs-con').appendChild(navItem);
 
                     tabsItem = document.querySelectorAll('.tabs-item');
@@ -237,13 +235,24 @@
 
 
 </body>
+<script src="js/jquery.min.js"></script>
+<script src="js/apl.js"></script>
+<script>
+    handleAjax('task/getAll', {
+
+    }, "GET").done(function(resp) {
+        console.log(resp)
+    }).fail(function(err) {
+        console.log(err)
+    });
+</script>
 <script>
     // 左右滑动导航
     var moveLeft = document.querySelector('.nav-left');
     var moveRight = document.querySelector('.nav-right');
     var tabsCon = document.querySelector('.tabs-con');
     var left = 0;
-    moveLeft.addEventListener('click', function () {
+    moveLeft.addEventListener('click', function() {
         if (left < -200) {
             left = left + 200;
         } else {
@@ -251,28 +260,29 @@
         }
         tabsCon.style.left = left + 'px';
     })
-    moveRight.addEventListener('click', function () {
-        var tabs = document.querySelector('.tabs');
-        tabsW = tabs.clientWidth||tabs.offsetWidth;
-        tabsCon = document.querySelector('.tabs-con'); 
-        tabsConW = tabsCon.clientWidth||tabsCon.offsetWidth;
-        if(tabsConW>(tabsW-left)){
-            left = left - 200;
-            tabsCon.style.left = left + 'px';
-        }
-        // var tabsConW = tabsCon.clientWidth||tabsCon.offsetWidth;
-        // tabsConW = tabsConW - 200;
-        // tabsConW = 0-tabsConW
-        
-    })
-    // 选择导航页面
+    moveRight.addEventListener('click', function() {
+            var tabs = document.querySelector('.tabs');
+            tabsW = tabs.clientWidth || tabs.offsetWidth;
+            tabsCon = document.querySelector('.tabs-con');
+            tabsConW = tabsCon.clientWidth || tabsCon.offsetWidth;
+            if (tabsConW > (tabsW - left)) {
+                left = left - 200;
+                tabsCon.style.left = left + 'px';
+            }
+            // var tabsConW = tabsCon.clientWidth||tabsCon.offsetWidth;
+            // tabsConW = tabsConW - 200;
+            // tabsConW = 0-tabsConW
+
+        })
+        // 选择导航页面
     chooseNavItem();
-    function chooseNavItem(){
+
+    function chooseNavItem() {
         var tabsItem = document.querySelectorAll('.tabs-item');
-        for(var i=0;i<tabsItem.length;i++){
-            (function(i){
-                tabsItem[i].addEventListener('click',function(){
-                    if(document.querySelector('.tabs-item-this')){
+        for (var i = 0; i < tabsItem.length; i++) {
+            (function(i) {
+                tabsItem[i].addEventListener('click', function() {
+                    if (document.querySelector('.tabs-item-this')) {
                         document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
                     }
                     tabsItem[i].classList.add('tabs-item-this');
@@ -281,7 +291,7 @@
                     document.getElementById('contentsss').setAttribute("src", src);
                     document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title');
                     navActive(i)
-                    // navItemClose();
+                        // navItemClose();
                     return;
                 })
             })(i)
@@ -289,27 +299,28 @@
     }
     // 关闭导航页面
     navItemClose();
-    function navItemClose(){
+
+    function navItemClose() {
         var navItemClose = document.querySelectorAll('.tabs-close');
         var tabsItem = document.querySelectorAll('.tabs-item');
-        for(var i=0;i<navItemClose.length;i++){
-            (function(i){
-                navItemClose[i].addEventListener('click',function(ev){
+        for (var i = 0; i < navItemClose.length; i++) {
+            (function(i) {
+                navItemClose[i].addEventListener('click', function(ev) {
                     this.parentNode.remove();
                     navItemClose = document.querySelectorAll('.tabs-close');
                     tabsItem = document.querySelectorAll('.tabs-item');
-                    if(!document.querySelector('.tabs-item-this')){
+                    if (!document.querySelector('.tabs-item-this')) {
                         // document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
-                        if(tabsItem[i]){
+                        if (tabsItem[i]) {
                             tabsItem[i].classList.add('tabs-item-this');
                             var src = tabsItem[i].getAttribute('data-src');
                             document.querySelector('.content-nav-item').innerHTML = tabsItem[i].getAttribute('data-title')
 
-                        }else{
+                        } else {
                             var tabsItem = document.querySelectorAll('.tabs-item');
-                            tabsItem[tabsItem.length-1].classList.add('tabs-item-this');
-                            var src = tabsItem[tabsItem.length-1].getAttribute('data-src');
-                            document.querySelector('.content-nav-item').innerHTML = tabsItem[tabsItem.length-1].getAttribute('data-title')
+                            tabsItem[tabsItem.length - 1].classList.add('tabs-item-this');
+                            var src = tabsItem[tabsItem.length - 1].getAttribute('data-src');
+                            document.querySelector('.content-nav-item').innerHTML = tabsItem[tabsItem.length - 1].getAttribute('data-title')
 
                         }
                         document.getElementById('contentsss').setAttribute("src", src);
@@ -323,18 +334,18 @@
         }
     }
     // 选择顶部导航控住左边导航活动
-    function navActive(i){
+    function navActive(i) {
         var navChild = document.querySelectorAll('.layui-nav-child>dd>a');
         var navCd = document.querySelectorAll('.layui-nav-child>dd');
         var navItemed = document.querySelectorAll('.layui-nav-itemed');
-        for(var k=0;k<navItemed.length;k++){
+        for (var k = 0; k < navItemed.length; k++) {
             navItemed[k].classList.remove('layui-nav-itemed');
         }
-        if(document.querySelector('.layui-this')){
+        if (document.querySelector('.layui-this')) {
             document.querySelector('.layui-this').classList.remove('layui-this');
         }
-        for(var j=0;j<navChild.length;j++){
-            if(tabsItem[i].getAttribute('data-title') == navChild[j].innerText){
+        for (var j = 0; j < navChild.length; j++) {
+            if (tabsItem[i].getAttribute('data-title') == navChild[j].innerText) {
                 navCd[j].classList.add('layui-this');
                 navCd[j].parentNode.parentNode.classList.add('layui-nav-itemed');
             }
@@ -343,12 +354,12 @@
     // 禁止冒泡事件
     function stopBubble(e) {
         //如果提供了事件对象，则这是一个非IE浏览器
-    if ( e && e.stopPropagation )
+        if (e && e.stopPropagation)
         //因此它支持W3C的stopPropagation()方法
-        e.stopPropagation();
-    else
-    //否则，我们需要使用IE的方式来取消事件冒泡
-        window.event.cancelBubble = true;
+            e.stopPropagation();
+        else
+        //否则，我们需要使用IE的方式来取消事件冒泡
+            window.event.cancelBubble = true;
     }
 
 
@@ -359,59 +370,60 @@
     var indexNav = '<div class="tabs-item tabs-item-this" data-src="./src/workbench.html" data-title="首页"><div class="dot"></div>首页</div>';
     var tabsCon = document.querySelector('.tabs-con');
 
-    navClose.addEventListener('mouseover',function(){
+    navClose.addEventListener('mouseover', function() {
         navCloseDialog.style.display = 'block'
     })
-    navClose.addEventListener('mouseout',function(){
-        navCloseDialog.style.display = 'none'
-    })
-    // 关闭所有
-    closeAll.addEventListener('click',function(){
-        navCloseDialog.style.display = 'none';
-        tabsCon.innerHTML = indexNav;
-        document.getElementById('contentsss').setAttribute("src", './src/workbench.html');
-        document.querySelector('.content-nav-item').innerHTML = '首页';
-        var navItemed = document.querySelectorAll('.layui-nav-itemed');
-        for(var k=0;k<navItemed.length;k++){
-            navItemed[k].classList.remove('layui-nav-itemed');
-        }
-        if(document.querySelector('.layui-this')){
-            document.querySelector('.layui-this').classList.remove('layui-this');
-        }
-        chooseNavItem();
-        navItemClose();
-    })
-    // 关闭其他
-    closeOther.addEventListener('click',function(){
-        var tabsThis = document.querySelector('.tabs-item-this');
-        
-        var indexNavInner = '<div class="dot"></div>首页';
-        navCloseDialog.style.display = 'none';
-        if(tabsThis.getAttribute('data-src')=='./src/workbench.html'){
+    navClose.addEventListener('mouseout', function() {
+            navCloseDialog.style.display = 'none'
+        })
+        // 关闭所有
+    closeAll.addEventListener('click', function() {
+            navCloseDialog.style.display = 'none';
             tabsCon.innerHTML = indexNav;
-        }else{
-            tabsCon.innerHTML = '<div class="tabs-item" data-src="./src/workbench.html" data-title="首页"><div class="dot"></div>首页</div>'+'<div class="tabs-item tabs-item-this" data-src="'
-            +tabsThis.getAttribute('data-src')
-            +'" data-title="'
-            +tabsThis.getAttribute('data-title')
-            +'">'
-            +tabsThis.innerHTML
-            +'</div>';
-        }
-        document.querySelector('.content-nav-item').innerHTML = document.querySelector('.tabs-item-this').getAttribute('data-title');
-        chooseNavItem();
-        navItemClose();
-    })
-    // 工作台
+            document.getElementById('contentsss').setAttribute("src", './src/workbench.html');
+            document.querySelector('.content-nav-item').innerHTML = '首页';
+            var navItemed = document.querySelectorAll('.layui-nav-itemed');
+            for (var k = 0; k < navItemed.length; k++) {
+                navItemed[k].classList.remove('layui-nav-itemed');
+            }
+            if (document.querySelector('.layui-this')) {
+                document.querySelector('.layui-this').classList.remove('layui-this');
+            }
+            chooseNavItem();
+            navItemClose();
+        })
+        // 关闭其他
+    closeOther.addEventListener('click', function() {
+            var tabsThis = document.querySelector('.tabs-item-this');
+
+            var indexNavInner = '<div class="dot"></div>首页';
+            navCloseDialog.style.display = 'none';
+            if (tabsThis.getAttribute('data-src') == './src/workbench.html') {
+                tabsCon.innerHTML = indexNav;
+            } else {
+                tabsCon.innerHTML = '<div class="tabs-item" data-src="./src/workbench.html" data-title="首页"><div class="dot"></div>首页</div>' + '<div class="tabs-item tabs-item-this" data-src="' +
+                    tabsThis.getAttribute('data-src') +
+                    '" data-title="' +
+                    tabsThis.getAttribute('data-title') +
+                    '">' +
+                    tabsThis.innerHTML +
+                    '</div>';
+            }
+            document.querySelector('.content-nav-item').innerHTML = document.querySelector('.tabs-item-this').getAttribute('data-title');
+            chooseNavItem();
+            navItemClose();
+        })
+        // 工作台
     selectIndexNav();
-    function selectIndexNav(){
-        document.querySelector('.two-in-menu-one').addEventListener('click',function(){
+
+    function selectIndexNav() {
+        document.querySelector('.two-in-menu-one').addEventListener('click', function() {
             var tabsItem = document.querySelectorAll('.tabs-item');
             document.querySelector('.tabs-item-this').classList.remove('tabs-item-this');
             tabsItem[0].classList.add('tabs-item-this');
             document.getElementById('contentsss').setAttribute("src", './src/workbench.html');
             document.querySelector('.content-nav-item').innerHTML = '首页';
-            if(document.querySelector('.layui-this')){
+            if (document.querySelector('.layui-this')) {
                 document.querySelector('.layui-this').classList.remove('layui-this');
             }
         })

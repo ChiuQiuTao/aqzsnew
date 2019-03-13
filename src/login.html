@@ -87,15 +87,13 @@
                     if (!validation) {
                         alerts("请拖拉验证!");
                     } else {
+
                         handleAjax('login', {
                             username: $(".login-use").val(),
                             password: $(".login-pass").val()
                         }).done(function(resp) {
-                            // 当result为true的回调
-                            console.log(resp)
                             window.location.href = "../index.html";
                         }).fail(function(err) {
-                            // 当result为false的回调
                             if (err.status == "400") {
                                 layer.msg('账号与密码不正确', {
                                     icon: 5

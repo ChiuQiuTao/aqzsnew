@@ -8,12 +8,16 @@ function ajax(url, param, type) {
         window.location.href = "../src/login.html";
         return;
     }
-    // 利用了jquery延迟对象回调的方式对ajax封装，使用done()，fail()，always()等方法进行链式回调操作
+    console.log(sessions)
+        // 利用了jquery延迟对象回调的方式对ajax封装，使用done()，fail()，always()等方法进行链式回调操作
     return jq.ajax({
         url: base + url,
         data: param || {},
         type: type || 'POST',
-        async: true
+        async: true,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer" + " " + sessions)
+        },
     });
 }
 
@@ -23,10 +27,10 @@ function handleAjax(url, param, type) {
         resp = JSON.parse(resp);
         if (resp.status == 200) {
             sessionStorage.setItem('token', resp.jwtToken);
-            return resp
+            return resp;
         }
         if (resp.code == 10000) {
-            return resp // 直接返回要处理的数据，作为默认参数传入之后done()方法的回调
+            return resp; // 直接返回要处理的数据，作为默认参数传入之后done()方法的回调
         } else {
             return jq.Deferred().reject(resp); // 返回一个失败状态的deferred对象，把错误代码作为默认参数传入之后fail()方法的回调
         }
