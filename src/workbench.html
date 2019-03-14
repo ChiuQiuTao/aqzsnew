@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>工作台</title>
+    <!-- <link rel="icon" href="../public/favicon.ico"> -->
+    <link rel="stylesheet" href="../public/dist/css/layui.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/workbench.css">
+</head>
+
+<body>
+    <form class="layui-form" action="">
+        <div class="select">
+            <div class="select-con">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">指标解释 | 地域</label>
+                        <div class="layui-input-inline">
+                            <select name="modules" lay-verify="required" lay-search="">
+                                <option value="">中新食品区</option>
+                                <option value="1">layer</option>
+                                <option value="2">form</option>
+                                <option value="3">layim</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="date">
+                    </div>
+                </div>
+
+
+                <div class="select-btn">
+                    <div class="select-btn-item">
+                        查询
+                    </div>
+                    <div class="select-btn-item">
+                        重置
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="con-top">
+                <div class="item">
+                    <div class="item-title">
+                        <div>园区企业风险等级</div>
+                        <!-- <div class="title-icon">
+                            <div class="title-icon-item"></div>
+                            <div class="title-icon-item"></div>
+                            <div class="title-icon-item"></div>
+                            <div class="title-icon-item"></div>
+                        </div> -->
+                        <div class="title-icon-item">
+                            <img src="../img/refresh.png" alt="">
+                        </div>
+                    </div>
+                    <div class="item-con">
+                        <table class="layui-table" lay-skin="line">
+                            <tr>
+                                <th>企业名称</th>
+                                <th>法人</th>
+                                <th>风险等级</th>
+                                <th>企业类型</th>
+                                <th>评定日期</th>
+                            </tr>
+                            <tr>
+                                <td>全业务发展用户..</td>
+                                <td>户</td>
+                                <td class="td-gn">低风险</td>
+                                <td>食品生产</td>
+                                <td class="td-rd">20181113</td>
+                            </tr>
+                            <tr>
+                                <td>全业务发展用户..</td>
+                                <td>户</td>
+                                <td class="td-gn">低风险</td>
+                                <td>食品生产</td>
+                                <td class="td-rd">20181113</td>
+                            </tr>
+                            <tr>
+                                <td>全业务发展用户..</td>
+                                <td>户</td>
+                                <td class="td-gn">低风险</td>
+                                <td>食品生产</td>
+                                <td class="td-rd">20181113</td>
+                            </tr>
+                            <tr>
+                                <td>全业务发展用户..</td>
+                                <td>户</td>
+                                <td class="td-gn">低风险</td>
+                                <td>食品生产</td>
+                                <td class="td-rd">20181113</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div class="item" style="margin:0">
+                    <div class="item-title">
+                        <div>指标趋势图（全业务发展用户数）</div>
+                        <div class="title-icon-item">
+                                <img src="../img/refresh.png" alt="">
+                            </div>
+                    </div>
+                    <div class="item-con">
+                        <div id="main" style="width: 100%;height:270px;margin-top: -30px"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="con-bot">
+                
+                <div class="con-bot-title">
+                    <div class="con-bot-icon">
+                        <img src="../img/nav-icon06.png" alt="">
+                    </div>
+                    <div class="con-bot-tab con-bot-tab-this">企业分布数（平台发展用户数）</div>
+                    <div class="con-bot-tab">追溯系统使用分布表（全国业务发展用户数）</div>
+                </div>
+                <div class="con-bot-con">
+                    <table class="layui-table" lay-skin="line" lay-filter="bot-table" style="dispaly:block;">
+                        <tr>
+                            <th lay-data="{sort: true}">区域</th>
+                            <th>单位</th>
+                            <th lay-data="{sort: true}">当日值</th>
+                            <th lay-data="{sort: true}">日环比</th>
+                            <th lay-data="{sort: true}">本月累计值</th>
+                            <th lay-data="{sort: true}">累计环比</th>
+                        </tr>
+                        <tr>
+                            <td>中心食品区</td>
+                            <td>户</td>
+                            <td>4,095</td>
+                            <td class="td-rd">17.16%</td>
+                            <td>148.750</td>
+                            <td class="td-gn">7.11%</td>
+                        </tr>
+                        <tr>
+                            <td>中心食品区</td>
+                            <td>户</td>
+                            <td>4,095</td>
+                            <td class="td-rd">17.16%</td>
+                            <td>148.750</td>
+                            <td class="td-gn">7.13%</td>
+                        </tr>
+                        <tr>
+                            <td>中心食品区</td>
+                            <td>户</td>
+                            <td>4,095</td>
+                            <td class="td-rd">17.16%</td>
+                            <td>148.750</td>
+                            <td class="td-gn">7.13%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../public/echarts.common.min.js"></script>
+<script src="../public/dist/layui.js"></script>
+<script src="../js/apl.js"></script>
+<script>
+    layui.use(['table','laydate'], function(){
+        var table = layui.table,
+        laydate = layui.laydate;
+        laydate.render({
+            elem: '#date' //指定元素
+        });
+        table.on('edit(bot-table)', function(obj){
+        });
+        
+    });
+</script>
+<script>
+var myChart = echarts.init(document.getElementById('main'));
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+    }]
+};
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
+<script>
+    var tab = document.querySelectorAll('.con-bot-tab');
+    for(var i=0;i<tab.length;i++){
+        (function(i){
+            tab[i].addEventListener('click',function(){
+                document.querySelector('.con-bot-tab-this').classList.remove('con-bot-tab-this');
+                tab[i].classList.add('con-bot-tab-this');
+            })
+        })(i)
+    }
+</script>
