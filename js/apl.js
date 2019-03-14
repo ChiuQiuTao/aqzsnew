@@ -23,7 +23,6 @@ function ajax(url, param, type) {
 function handleAjax(url, param, type) {
     return ajax(url, param, type).then(function(resp) {
         // 成功回调
-        console.log(typeof resp);
         if (typeof resp == 'string') {
             resp = JSON.parse(resp)
         }
