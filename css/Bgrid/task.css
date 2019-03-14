@@ -130,3 +130,7 @@ body {
 .layui-table th {
     text-align: center;
 }
+
+.layui-table-page {
+    background-color: #fff;
+}
