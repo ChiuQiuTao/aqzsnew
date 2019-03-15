@@ -1,0 +1,14 @@
+.gis{
+    margin: 15px;
+    border: 1px solid #c9c9c9;
+}
+.gis-title{
+    height: 48px;
+    padding-left: 20px;
+    line-height: 48px;
+    background-color: #dcddde;
+}
+.gis-con{
+    height: 408px;
+    z-index: 999999;
+}
