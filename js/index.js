@@ -80,6 +80,9 @@ var menudata = [{
         icon: "icon-huanjingjiance",
         title: "环境监控",
         child: [{
+                url: "./src/Genvironment/manual.html",
+                title: " 手工数据采集"
+            }, {
                 url: "./src/Genvironment/data.html",
                 title: "环境数据查询"
             }, {

@@ -46,6 +46,9 @@
                     <div class="select-btn-item">
                         查询
                     </div>
+                    <div class="select-btn-item">
+                        重置
+                    </div>
                 </div>
             </div>
 
@@ -58,12 +61,9 @@
 
 </html>
 <script src="../../js/apl.js"></script>
-<script type="text/html" id="toolbarDemo" lay-filter="toolbss">
-    <div class="layui-btn-container ">
-        <button class="layui-btn  layui-btn-sm colors" lay-event="add"><i class="layui-icon"></i></i>添加</button>
-        <button class="layui-btn  layui-btn-sm colors" lay-event="update"><i class="layui-icon"></i>编辑</button>
-        <button class="layui-btn  layui-btn-sm colors" lay-event="delete"><i class="layui-icon"></i>删除</button>
-    </div>
+<script type="text/html" id="More">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除
 </script>
 <script>
     layui.use('table', function() {
@@ -163,6 +163,7 @@
                     minWidth: 20,
                     align: "center",
                     fixed: 'right',
+                    toolbar: '#More',
                 }]
             ]
         });
