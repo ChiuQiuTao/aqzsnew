@@ -120,3 +120,6 @@ body {
 .layui-table-page .layui-laypage {
     margin: 0 auto;
 }
+select,input{
+    font-size: 12px;
+}

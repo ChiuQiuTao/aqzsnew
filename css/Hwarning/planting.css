@@ -1,0 +1,28 @@
+#select1{
+    display: block
+}
+#select2{
+    display: none
+}
+#select3{
+    display: none
+}
+#select4{
+    display: none
+}
+#select5{
+    display: none
+}
+.planting-s{
+    position: absolute;
+    margin-top: 55px;
+    
+    margin-left: 17px;
+}
+.planting-s .layui-inline{
+    display: flex;
+    align-items: center;
+}
+.select-kongbai{
+    width: 300px;
+}

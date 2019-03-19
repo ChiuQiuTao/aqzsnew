@@ -1,0 +1,24 @@
+.dendrogram-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.line-color .box{
+    width: 20px;
+    height: 12px;
+    border-radius: 2px;
+    background-color: #ff7f50;
+    margin-right: 5px;
+}
+.line-color{
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+.dendrogram{
+    margin: 15px;
+    margin-top: 40px;
+}
+.dendrogram-title>div{
+    width: 90px;
+}

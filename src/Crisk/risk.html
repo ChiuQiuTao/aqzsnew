@@ -165,7 +165,8 @@
         });
         table.render({
             elem: '#test',
-            url: base + 'talentExpert/getAll',
+            // url: base + 'talentExpert/getAll',
+            url: '../../js/json.json',
             method: "GET",
             where: {},
             headers: {
@@ -176,34 +177,33 @@
                 //如果是异步请求数据方式，res即为你接口返回的信息。
                 //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
                 console.log(res);
-
                 //得到当前页码
                 console.log(curr);
-
                 //得到数据总量
                 console.log(count);
             },
-            response: {
-                statusName: '', //数据状态的字段名称，默认：code
-                statusCode: null, //成功的状态码，默认：0
-                msgName: null, //状态信息的字段名称，默认：msg
-                countName: 'totalNum', //数据总数的字段名称，默认：count
-                dataName: 'lists', //数据列表的字段名称，默认：data
-            },
+            // response: {
+            //     statusName: '', //数据状态的字段名称，默认：code
+            //     statusCode: null, //成功的状态码，默认：0
+            //     msgName: null, //状态信息的字段名称，默认：msg
+            //     countName: 'totalNum', //数据总数的字段名称，默认：count
+            //     dataName: 'lists', //数据列表的字段名称，默认：data
+            // },
             cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 ,
+
             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['prev', 'page', 'next', 'skip', 'count'] //自定义分页布局
-                    //,curr: 5 //设定初始在第 5 页
+                layout: ['prev', 'page', 'next', 'skip', 'count','limit'] //自定义分页布局
+                    ,curr: 1 //设定初始在第 5 页
                     ,
                 groups: 5 //只显示 1 个连续页码
                     ,
-                first: true //不显示首页
+                first: false //不显示首页
                     ,
-                last: true //不显示尾页
+                last: false //不显示尾页
                     ,
-                prev: '下一页',
-                next: "上一页",
+                prev: '上一页',
+                next: "下一页",
                 theme: "#c81623",
             },
             // height: 'full-20',//满高
