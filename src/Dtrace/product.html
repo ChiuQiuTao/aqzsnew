@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>产品追溯</title>
+    <title>追溯查询</title>
     <link rel="stylesheet" href="../../public/dist/css/layui.css">
     <link rel="stylesheet" href="../../css/common.css">
-
+    <link rel="stylesheet" href="../../css/Dtrace/product.css">
 </head>
 
 <body>
@@ -17,42 +17,10 @@
             <div class="select-title">查询条件</div>
 
             <div class="select-con">
-
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">产品类型</label>
-                        <div class="layui-input-inline">
-                            <select name="modules" lay-verify="required" lay-search="">
-                                <option value="">全部</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">企业名称</label>
-                        <div class="layui-input-inline">
-                            <input type="text" class="layui-input" placeholder="输入企业名称">
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">产品名称</label>
-                        <div class="layui-input-inline">
-                            <input type="text" class="layui-input" placeholder="输入产品名称">
-                        </div>
-                    </div>
-                </div>
-
                 <div class="layui-inline">
                     <label class="layui-form-label">追溯码</label>
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" placeholder="输入追溯码">
+                        <input type="text" class="layui-input clearobjects" placeholder="输入追溯码" style="width:300px;">
                     </div>
                 </div>
 
@@ -60,7 +28,7 @@
                     <div class="select-btn-item">
                         查询
                     </div>
-                    <div class="select-btn-item">
+                    <div class="select-btn-item clearbarcode">
                         重置
                     </div>
                 </div>
@@ -69,7 +37,184 @@
         </div>
     </form>
 
-    <table class="layui-hide" id="test" lay-filter="testdome"></table>
+
+    <div class="product-query" id="container">
+
+    </div>
+
+
+    <script id="tpl" type="text/html">
+
+        <div class="layui-carousel" id="testtrace">
+            <div carousel-item>
+                <div>
+                    <h2 class="trace-product-jb">基本信息</h2>
+                    <div class="trace-one">
+                        <img src="http://175.20.241.9/FileUpload/Enterprise/20171114/8d458f2913584845b34aa1a8ddba8c80.jpg" alt="">
+                        <div class="trace-mess">
+                            <h2>150g雪花煎卷</h2>
+                            <div class="trace-product-mess">
+                                <p class="trace-pr">
+                                    <label> 产品名称:</label> <br/>
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                                <p>
+                                    <label> 产品规格:</label><br />
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                                <p>
+                                    <label> 产品批次:</label><br />
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                                <p>
+                                    <label> 产品条码:</label><br />
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                                <p>
+                                    <label> 执行标准:</label><br />
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                            </div>
+                            <div class="trace-timep">
+                                <p>
+                                    <label> 产品品牌:</label>
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                                <p>
+                                    <label> 保质期:</label>
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                                <p>
+                                    <label> 生产日期:</label>
+                                    <i>150g雪花煎卷</i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="Testing">
+                        <h2 class="trace-product-jb">产品检测信息</h2>
+                        <table class="layui-table">
+                            <thead>
+                                <tr>
+                                    <th>昵称</th>
+                                    <th>加入时间</th>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                    <td>贤心</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="Testing">
+                        <h2 class="trace-product-jb">原辅料信息</h2>
+                        <div class="trace-materials">
+                            <ul class="traceRaw-materials">
+                                <li>
+                                    <img src="http://175.20.241.9/FileUpload/Enterprise/20171114/8d458f2913584845b34aa1a8ddba8c80.jpg" alt="">
+                                    <a href="javascript:;">
+                                        <p>
+                                            <label>名称:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                        <p>
+                                            <label>种类:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                        <p>
+                                            <label>规格:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                        <p>
+                                            <label>保质期:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                        <p>
+                                            <label>执行标准号:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <img src="http://175.20.241.9/FileUpload/Enterprise/20171114/8d458f2913584845b34aa1a8ddba8c80.jpg" alt="">
+                                    <a href="javascript:;">
+                                        <p>
+                                            <label>名称:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <img src="http://175.20.241.9/FileUpload/Enterprise/20171114/8d458f2913584845b34aa1a8ddba8c80.jpg" alt="">
+                                    <a href="javascript:;">
+                                        <p>
+                                            <label>名称:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <img src="http://175.20.241.9/FileUpload/Enterprise/20171114/8d458f2913584845b34aa1a8ddba8c80.jpg" alt="">
+                                    <a href="javascript:;">
+                                        <p>
+                                            <label>名称:</label>
+                                            <i>面粉</i>
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="Testing">
+                        <h2 class="trace-product-jb">生产企业信息</h2>
+                        <div class="trace-Enterprise">
+                            <p>
+                                <label>企业名称:</label>
+                                <i>吉林米老头食品工业有限公司</i>
+                            </p>
+                            <p>
+                                <label>经营范围:</label>
+                                <i>吉林米老头食品工业有限公司</i>
+                            </p>
+                            <p>
+                                <label>营业执照号:</label>
+                                <i>吉林米老头食品工业有限公司</i>
+                            </p>
+                            <p>
+                                <label>联系电话:</label>
+                                <i>吉林米老头食品工业有限公司</i>
+                            </p>
+                            <p>
+                                <label>企业地址:</label>
+                                <i>吉林省吉林市永吉县岔路河镇吉林（中国-新加坡）食品区工业园区经四路与纬三街交汇处</i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </script>
     <script src="../../public/dist/layui.all.js"></script>
 </body>
 
@@ -77,142 +222,60 @@
 
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/apl.js"></script>
-<script type="text/html" id="toolbarDemo" lay-filter="toolbss">
-    <div class="layui-btn-container ">
-        <button class="layui-btn  layui-btn-sm colors" lay-event="add"><i class="layui-icon"></i></i>添加</button>
-        <button class="layui-btn  layui-btn-sm colors" lay-event="update"><i class="layui-icon"></i>编辑</button>
-        <button class="layui-btn  layui-btn-sm colors" lay-event="delete"><i class="layui-icon"></i>删除</button>
-    </div>
-</script>
+<script src="../../js/template-web.js"></script>
 <script>
-    layui.use('table', function() {
+    layui.use(['table', "carousel"], function() {
         var table = layui.table,
-            $ = layui.jquery;
-
+            $ = layui.jquery,
+            carousel = layui.carousel,
+            information = "F22022100006050092900004120190108";
         // postData.Type = GetQuery("Type");
         // postData.TraceCode = GetQuery("TraceCode"); //溯源码
         // postData.BarCode = GetQuery("BarCode");
         // postData.Batch = GetQuery("Batch");
+
         var postData = {
-            Type: 3,
-            TraceCode: "F22022100006050092900004120190108",
+            // Type: 2,
+            // TraceCode: "F22022100006050092900004120190108",
             // BarCode: "6925332600053", //条形码
             // Batch: "20190108" //批次
         };
 
         $.ajax({
-            url: "http://175.20.241.9:66//Home/Traceability",
+            url: 'http://192.168.163.100:9193/zs/generate/F22022100006050092900004120190108',
             type: "post",
             data: postData,
-            dataType: "jsonp",
-            async: false,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer" + " " + sessions);
+            },
             success: function(data) {
-                alert(data)
                 console.log(data)
-                if (data.Code == "-1") {} else {
-                    callBack(data);
-                }
             },
             error: function(data) {}
         });
 
-
-
-        table.render({
-            elem: '#test',
-            url: base + 'talentExpert/getAll',
-            method: "GET",
-            where: {},
-            headers: {
-                Authorization: "Bearer" + " " + sessions
-            },
-            done: function(res, curr, count) {
-                //如果是异步请求数据方式，res即为你接口返回的信息。
-                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-                console.log(res);
-                //得到当前页码
-                console.log(curr);
-                //得到数据总量
-                console.log(count);
-            },
-            skin: "line",
-            response: {
-                statusName: '', //数据状态的字段名称，默认：code
-                statusCode: null, //成功的状态码，默认：0
-                msgName: null, //状态信息的字段名称，默认：msg
-                countName: 'totalNum', //数据总数的字段名称，默认：count
-                dataName: 'lists', //数据列表的字段名称，默认：data
-            },
-            cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                ,
-            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['prev', 'page', 'next', 'skip', 'count'] //自定义分页布局
-                    //,curr: 5 //设定初始在第 5 页
-                    ,
-                groups: 5 //只显示 1 个连续页码
-                    ,
-                first: true //不显示首页
-                    ,
-                last: true //不显示尾页
-                    ,
-                prev: '下一页',
-                next: "上一页",
-                theme: "#c81623",
-            },
-            // height: 'full-20',//满高
-            cols: [
-                [{
-                    title: '编号',
-                    type: 'numbers',
-                    fixed: 'left'
-                }, {
-                    field: 'title',
-                    width: 240,
-                    title: '标题',
-                    minWidth: 100
-                }, {
-                    field: 'releasePeople',
-                    title: '发布人',
-                    width: 80,
-                    align: "center",
-                    minWidth: 20,
-                    sort: true
-                }, {
-                    field: 'releaseTime',
-
-                    title: '发布时间',
-                    align: "center",
-                    minWidth: 100,
-                    sort: true
-                }, {
-                    field: 'replyFew',
-                    width: 80,
-                    title: '回复数',
-                    minWidth: 20,
-                    align: "center",
-                    sort: true
-                }, {
-                    field: 'lastRespondent',
-                    title: '最后回复人',
-                    align: "center",
-                    minWidth: 20,
-                    width: 140,
-                    sort: true
-                }, {
-                    field: 'lastReplyTime',
-                    title: '最后回复时间',
-                    align: "center",
-                    minWidth: 100,
-                    sort: true
-                }, {
-                    field: 'wealth',
-                    width: 137,
-                    title: '更多',
-                    minWidth: 20,
-                    align: "center",
-                    fixed: 'right',
-                }]
-            ]
+        //轮播
+        carousel.render({
+            elem: '#testtrace',
+            width: '100%', //设置容器宽度
+            height: "410px",
+            arrow: 'hover', //始终显示箭头
+            anim: 'outside', //切换动画方式
+            autoplay: false, //是否自动切换
         });
+
+
+
+
+        //清除
+        $(".clearbarcode").click(function() {
+            $(".clearobjects").val("");
+        })
+        var data = {
+            list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+        };
+        var tpl = document.getElementById('tpl').innerHTML;
+        var html = template("tpl", data);
+        $("#container").html(html);
     });
 </script>

@@ -1,0 +1,108 @@
+.product-query {
+    padding: 0 15px 10px;
+}
+
+.trace-one {
+    width: 100%;
+}
+
+.trace-one>img {
+    display: block;
+    width: 298px;
+    height: 264px;
+    float: left;
+    margin-right: 20px;
+}
+
+.trace-product-jb {
+    margin: 10px 0 10px 10px;
+}
+
+.trace-mess {
+    width: 60%;
+    margin-left: 10px;
+    float: left;
+}
+
+.trace-product-mess {
+    border-top: 1px solid darkred;
+}
+
+.trace-product-mess>p {
+    height: 60px;
+    width: 200px;
+    display: inline-block;
+}
+
+.trace-pr {
+    margin-top: 10px;
+}
+
+.trace-timep {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.trace-timep>p {
+    width: 200px;
+}
+
+.trace-mess label {
+    color: #949494;
+}
+
+.Testing {
+    padding: 10px 20px;
+}
+
+.trace-materials {
+    width: 100%;
+}
+
+.traceRaw-materials {
+    width: 100%;
+    float: left;
+}
+
+.traceRaw-materials>li {
+    width: 300px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.traceRaw-materials>li>img {
+    display: block;
+    width: 120px;
+    height: 130px;
+    float: left;
+}
+
+.traceRaw-materials>li>a {
+    float: left;
+    margin-left: 10px;
+}
+
+.traceRaw-materials>li>a>p {
+    margin: 6px 0;
+}
+
+.traceRaw-materials>li>a>p>label {
+    color: #949494;
+}
+
+.trace-Enterprise {
+    padding: 10px;
+    background-image: url("../../img/bjt.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-size: 100% 100%;
+}
+
+.trace-Enterprise>p {
+    margin: 30px 0px 0 20px;
+}
+
+.trace-Enterprise>p>label {
+    color: #949494;
+}

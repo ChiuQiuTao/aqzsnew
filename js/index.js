@@ -23,6 +23,14 @@ var menudata = [{
     },
     {
         icon: "icon-fengxianyuan",
+        title: "审批管理",
+        child: [{
+            url: "./src/Crisk/risk.html",
+            title: "企业审批"
+        }]
+    },
+    {
+        icon: "icon-fengxianyuan",
         title: "风险等级",
         child: [{
             url: "./src/Crisk/risk.html",
@@ -32,20 +40,21 @@ var menudata = [{
     {
         icon: "icon-jichushujuguanli",
         title: "溯源查询",
-        child: [{
-                url: "./src/Dtrace/goods.html",
-                title: "商品追溯"
-            }, {
-                url: "./src/Dtrace/Livestock.html",
-                title: "禽畜追溯"
-            },
-            {
-                url: "./src/Dtrace/farmproducts.html",
-                title: "农产品追溯"
-            },
+        child: [
+            // {
+            //     url: "./src/Dtrace/goods.html",
+            //     title: "商品追溯"
+            // }, {
+            //     url: "./src/Dtrace/Livestock.html",
+            //     title: "禽畜追溯"
+            // },
+            // {
+            //     url: "./src/Dtrace/farmproducts.html",
+            //     title: "农产品追溯"
+            // },
             {
                 url: "./src/Dtrace/product.html",
-                title: "产品追溯"
+                title: "追溯查询"
             },
         ]
     },

@@ -16,7 +16,7 @@
 
 <body>
     <form class="layui-form" action="">
-        <div class="select">
+        <div class="select common">
             <!-- <div class="select-title">查询条件</div> -->
             <div class="select-con">
                 <div class="layui-inline">
@@ -55,25 +55,25 @@
     //     console.log(err)
     // });
 </script>
-<script  type="text/javascript">
+<script type="text/javascript">
     var map = new BMap.Map("allmap");
     map.centerAndZoom(new BMap.Point(116.328749, 40.026922), 13);
     map.enableScrollWheelZoom(true);
     var index = 0;
     var myGeo = new BMap.Geocoder();
     var adds = [
-    new BMap.Point(116.307852, 40.057031),
-    new BMap.Point(116.313082, 40.047674),
-    new BMap.Point(116.328749, 40.026922),
-    new BMap.Point(116.347571, 39.988698),
-    new BMap.Point(116.316163, 39.997753),
-    new BMap.Point(116.345867, 39.998333),
-    new BMap.Point(116.403472, 39.999411),
-    new BMap.Point(116.307901, 40.05901)
+        new BMap.Point(116.307852, 40.057031),
+        new BMap.Point(116.313082, 40.047674),
+        new BMap.Point(116.328749, 40.026922),
+        new BMap.Point(116.347571, 39.988698),
+        new BMap.Point(116.316163, 39.997753),
+        new BMap.Point(116.345867, 39.998333),
+        new BMap.Point(116.403472, 39.999411),
+        new BMap.Point(116.307901, 40.05901)
     ];
     for (var i = 0; i < adds.length; i++) {
-    var marker = new BMap.Marker(adds[i]);
-    map.addOverlay(marker);
-    // marker.setLabel(new BMap.Label("我是商圈:"+(i+1),{offset:new BMap.Size(20,-10)}));
+        var marker = new BMap.Marker(adds[i]);
+        map.addOverlay(marker);
+        // marker.setLabel(new BMap.Label("我是商圈:"+(i+1),{offset:new BMap.Size(20,-10)}));
     }
 </script>
