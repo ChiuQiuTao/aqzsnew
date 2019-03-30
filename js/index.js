@@ -20,14 +20,21 @@ var menudata = [{
                 title: "执法信息"
             },
         ]
-    },
-    {
-        icon: "icon-fengxianyuan",
+    },{
+        icon: "icon-webicon06",
         title: "审批管理",
         child: [{
-            url: "./src/Crisk/risk.html",
-            title: "企业审批"
-        }]
+                url: "./src/Kapproval/enterprise.html",
+                title: "企业审批"
+            }, {
+                url: "./src/Kapproval/material.html",
+                title: "原辅料审批"
+            },
+            {
+                url: "./src/Kapproval/product.html",
+                title: "产品审批"
+            },
+        ]
     },
     {
         icon: "icon-fengxianyuan",
