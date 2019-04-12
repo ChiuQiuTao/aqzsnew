@@ -38,7 +38,14 @@
     </form>
 
     <div class="gis">
-        <div class="gis-title">地理信息</div>
+        <div class="gis-title">
+            <div>
+                地理信息
+            </div>
+            <div class="gis-add">
+                新增
+            </div>
+        </div>
         <div id="allmap" class="gis-con"></div>
     </div>
     <script src="../../public/dist/layui.js"></script>
@@ -57,23 +64,32 @@
 </script>
 <script type="text/javascript">
     var map = new BMap.Map("allmap");
-    map.centerAndZoom(new BMap.Point(116.328749, 40.026922), 13);
-    map.enableScrollWheelZoom(true);
-    var index = 0;
-    var myGeo = new BMap.Geocoder();
-    var adds = [
-        new BMap.Point(116.307852, 40.057031),
-        new BMap.Point(116.313082, 40.047674),
-        new BMap.Point(116.328749, 40.026922),
-        new BMap.Point(116.347571, 39.988698),
-        new BMap.Point(116.316163, 39.997753),
-        new BMap.Point(116.345867, 39.998333),
-        new BMap.Point(116.403472, 39.999411),
-        new BMap.Point(116.307901, 40.05901)
-    ];
-    for (var i = 0; i < adds.length; i++) {
-        var marker = new BMap.Marker(adds[i]);
-        map.addOverlay(marker);
-        // marker.setLabel(new BMap.Label("我是商圈:"+(i+1),{offset:new BMap.Size(20,-10)}));
-    }
+	map.centerAndZoom(new BMap.Point(116.417854,39.921988), 15);
+	var data_info = [[116.417854,39.921988,"<a href='http://www.w3school.com.cn'>W3School</a>"],
+					 [116.406605,39.921585,"地址：北京市东城区东华门大街"],
+					 [116.412222,39.912345,"地址：北京市东城区正义路甲5号"]
+					];
+	var opts = {
+				width : 250,     // 信息窗口宽度
+				height: 80,     // 信息窗口高度
+				title : "信息窗口" , // 信息窗口标题
+				enableMessage:true//设置允许信息窗发送短息
+			   };
+	for(var i=0;i<data_info.length;i++){
+		var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1]));  // 创建标注
+		var content = data_info[i][2];
+		map.addOverlay(marker);               // 将标注添加到地图中
+		addClickHandler(content,marker);
+	}
+	function addClickHandler(content,marker){
+		marker.addEventListener("click",function(e){
+			openInfo(content,e)}
+		);
+	}
+	function openInfo(content,e){
+		var p = e.target;
+		var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+		var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+		map.openInfoWindow(infoWindow,point); //开启信息窗口
+	}
 </script>

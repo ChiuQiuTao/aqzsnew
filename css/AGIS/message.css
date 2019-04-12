@@ -4,9 +4,19 @@
 }
 .gis-title{
     height: 48px;
-    padding-left: 20px;
     line-height: 48px;
     background-color: #dcddde;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.gis-title{
+    padding:0 20px;
+
+}
+.gis-add{
+    font-size: 12px;
+    cursor: pointer;
 }
 .gis-con{
     height: 408px;

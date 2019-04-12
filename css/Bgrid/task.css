@@ -33,7 +33,17 @@ body {
 .layui-form-label {
     font-size: 12px;
 }
-
+.numfrom{
+    font-size: 12px;
+    padding: 0 5px;
+}
+.layui-form-item .layui-input-inlines{
+    width: 390px;
+}
+.layui-input-inline{
+    display: flex;
+    align-items: center;
+}
 .layui-input-inline input {
     height: 25px;
     width: 180px;
