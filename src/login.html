@@ -76,39 +76,73 @@
 <script src="../public/dist/layui.js"></script>
 <script src="../js/apl.js"></script>
 <script>
+    // var verifyCode = new GVerify("v_container");
     layui.use('layer', function() { //独立版的layer无需执行这一句
         var $ = layui.jquery,
             layer = layui.layer; //独立版的layer无需执行这一句
 
+        //点击登录
         $(".login").click(function() {
-            if (verify($(".login-use"), "请输入用户名!")) {
-                if ($(".login-pass").val() == "") {
-                    alerts("请输入密码！")
-                } else {
-                    if (!validation) {
-                        alerts("请拖拉验证!");
-                    } else {
-
-                        handleAjax('login', {
-                            username: $(".login-use").val(),
-                            password: $(".login-pass").val()
-                        }).done(function(resp) {
-                            console.log(resp)
-                            window.location.href = "../index.html";
-
-                        }).fail(function(err) {
-                            console.log(err)
-                            if (err.status == "400") {
-                                layer.msg('账号与密码不正确', {
-                                    icon: 5
-                                });
-                            }
-                        });
-                    }
-                }
-            }
+            events();
             return
         })
+
+        /*键盘enter登录*/
+        $(document).keydown(function(event) {
+            if (event.keyCode == 13) {
+                events();
+            };
+            return;
+        });
+
+        /*是否存在企业id*/
+        function getUser() {
+            noAjax('user/getUser', {}, "GET").done(function(resp) {
+                console.log(resp);
+                window.location.href = "../index.html";
+                return
+                // if (resp.enterpriseId && resp.enterpriseId != "") {
+                //     window.location.href = "../index.html";
+                //     var idss = resp.enterpriseId;
+                //     localStorage.setItem("enterpriseId", idss);
+
+                // } else {
+                //     // window.location.href = "./company.html";
+                // }
+                return
+            }).fail(function(err) {
+                console.log(err, "dsd");
+                return
+            });
+        }
+       
+        /*事件*/
+        function events() {
+            if (verify($(".login-use"), "请输入用户名!")) {
+
+                if ($(".login-pass").val() == "") {
+                    alerts("请输入密码！")
+                } 
+                else {
+                    handleAjax('login', {
+                        username: $(".login-use").val(),
+                        password: $(".login-pass").val()
+                    }).done(function(resp) {
+                        console.log(resp);
+                        // window.location.href = "./company.html";
+                        getUser();
+                    }).fail(function(err) {
+                        console.log(err)
+                        if (err.status == "400") {
+                            layer.msg('账号与密码不正确', {
+                                icon: 5,
+                                time: 2000
+                            });
+                        }
+                    });
+                }
+            }
+        }
 
         /*验证*/
         function verify(eles, tex) {

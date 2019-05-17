@@ -1,0 +1,221 @@
+body {
+    padding-bottom: 50px;
+}
+
+.logo {
+    font-size: 36px;
+    padding-left: 20px;
+    line-height: 80px;
+}
+
+.head {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    background-color: #c81623;
+    color: #fff;
+    padding-left: 20px;
+}
+
+.input {
+    width: 960px;
+    border: 1px solid #c9c9c9;
+    padding: 50px;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 200px;
+}
+
+.item-txt {
+    width: 100px;
+    text-align: right;
+}
+
+.item input {
+    width: 300px;
+    margin-left: 15px;
+}
+
+.item-btn {
+    width: 100px;
+    height: 36px;
+    background-color: #c81623;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.input-s {
+    width: 960px;
+    border: 1px solid #c9c9c9;
+    padding: 50px;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1E9FFF;
+    font-size: 20px;
+}
+
+.input-s i {
+    margin-right: 20px;
+}
+
+.btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.btns-item {
+    padding: 0 40px;
+    height: 40px;
+    color: #fff;
+    background-color: #ff0000;
+    border: #ff0000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Hasregistered {
+    margin: 20px auto;
+    height: 45px;
+    width: 330px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    border: 1px solid #c9c9c9;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Hasregistered:hover {
+    background-color: #c9c9c9;
+}
+
+.registereds {
+    width: 322px;
+}
+
+.regexsrr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.regexsrr span {
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.regexsrr input {
+    padding-left: 10px;
+    width: 220px;
+    display: inline-block;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.itemw {
+    margin-left: 245px;
+}
+
+.times {
+    padding: 0px 30px;
+}
+
+.plates {
+    position: relative;
+}
+
+.add {
+    width: 20px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.jis {
+    margin-left: 100px;
+}
+
+.jis .item-txt {
+    width: 200px;
+    text-align: right;
+}
+
+.typeof {
+    position: relative;
+}
+.layui-input-block{
+    display: flex;
+    align-items: center;
+    margin-left: 15px !important;
+}
+.layui-inline-sel{
+    width: 400px;
+    display: flex;
+}
+.layui-form-select{
+    margin-right: 15px;
+
+}
+.layui-inline-sel input{
+    width: 100px;
+    margin-left: 0;
+    /* margin-right: 15px; */
+}
+.border{
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.border-item{
+    display: flex;
+    align-items: center;
+    width: 468px;
+}
+.itemb{
+    margin-left: 0;
+}
+.btns-add{
+    margin-left: 114px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.layui-input-b{
+    width: 150px !important;
+}
+.btns-del{
+    width: 100px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    min-width:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

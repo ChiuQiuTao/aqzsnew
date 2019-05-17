@@ -34,6 +34,10 @@ var menudata = [{
                 url: "./src/Kapproval/product.html",
                 title: "产品审批"
             },
+            {
+                url: "./src/Kapproval/person.html",
+                title: "个人审批"
+            },
         ]
     },
     {

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人审批</title>
+    <link rel="stylesheet" href="../../public/dist/css/layui.css">
+    <link rel="stylesheet" href="../../css/common.css">
+
+</head>
+
+<body>
+    <table class="layui-hide" id="test" lay-filter="testdome"></table>
+    <script src="../../public/dist/layui.all.js"></script>
+</body>
+
+</html>
+
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/apl.js"></script>
+<script type="text/html" id="toolbarinter" lay-filter="toolbss">
+    <div class="layui-btn-container ">
+        <button class="layui-btn  layui-btn-sm colors" lay-event="refresh"><i class="layui-icon layui-icon-refresh"></i>刷新</button>
+        <button class="layui-btn  layui-btn-sm colors" lay-event="update"><i class="layui-icon"></i>审核</button>
+        <!-- <button class="layui-btn  layui-btn-sm colors" lay-event="delete"><i class="layui-icon"></i>删除</button>
+        <button class="layui-btn  layui-btn-sm colors" lay-event="update"><i class="layui-icon  layui-icon-unlink"></i>注销</button>
+        <button class="layui-btn  layui-btn-sm colors" lay-event="delete"><i class="layui-icon  layui-icon-link"></i>审核</button> -->
+    </div>
+</script>
+
+<script type="text/html" id="More">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+</script>
+<script src="../../js/Kapproval/person.js">
+</script>
