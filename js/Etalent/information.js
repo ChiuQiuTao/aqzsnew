@@ -9,7 +9,7 @@
                 data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    layer.msg('添加');
+                    window.location.href = "./dialog/informationdialog.html";
                     break;
                 case 'update':
                     if (data.length === 0) {
@@ -17,19 +17,42 @@
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                        // layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                         window.location.href = "./dialog/informationdialog.html?id="+data[0].id;
                     }
                     break;
                 case 'delete':
                     if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else {
-                        layer.msg('删除');
+                        for(var i=0;i<data.length;i++){
+                            delBasExpertsById(data[i].id);
+                        }
                     }
                     break;
             };
         });
+        document.querySelector('#selectbtn').addEventListener('click',function(){
+            getBasExperts();
+        })
+        document.querySelector('#resetbtn').addEventListener('click',function(){
+            window.location.reload();
+        })
 
+        // 删除
+        function delBasExpertsById(id){
+            handleAjax('expert/delBasExpertsById', { id: id }, "POST").done(function(resp) {
+                console.log(resp)
+                layer.msg('删除成功');
+                setTimeout(function(){
+                    getBasExperts();
+                },1500)
+                return
+            }).fail(function(err) {
+                console.log(err)
+
+            });
+        }
         getBasExperts();
         //获取列表
         function getBasExperts(){
@@ -105,13 +128,13 @@
                         title: '专家类型',
                         align: "center",
                         minWidth: 150,
-                        templet: function(d) {
-                            if(d.experttype==null){
-                                return '注册审核'
-                            }else{
-                                return '修改审核'
-                            }
-                        }
+                        // templet: function(d) {
+                        //     if(d.experttype==null){
+                        //         return '注册审核'
+                        //     }else{
+                        //         return '修改审核'
+                        //     }
+                        // }
                     },
                     
                     {
@@ -124,12 +147,14 @@
                         title: '联系电话',
                         align: "center",
                         minWidth: 150
-                    },{
-                        field: 'phone',
-                        title: '状态',
-                        align: "center",
-                        minWidth: 150
-                    },{
+                    },
+                    // {
+                    //     field: 'phone',
+                    //     title: '状态',
+                    //     align: "center",
+                    //     minWidth: 150
+                    // },
+                    {
                         field: 'inputtime',
                         title: '录入时间',
                         align: "center",

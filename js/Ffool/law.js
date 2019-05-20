@@ -2,14 +2,27 @@
     layui.use('table', function() {
         var table = layui.table,
             $ = layui.jquery;
-
+            laydate=layui.laydate
+        //时间
+        laydate.render({
+            elem: '#imptimeq' //指定元素 
+        });
+        laydate.render({
+            elem: '#imptimeh' //指定元素 
+        });
+        document.querySelector('#selectbtn').addEventListener('click',function(){
+            getBasSafetystandards();
+        })
+        document.querySelector('#resetbtn').addEventListener('click',function(){
+            window.location.reload();
+        })
         //监听事件
         table.on('toolbar(testdome)', function(obj) {
             var checkStatus = table.checkStatus(obj.config.id),
                 data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
-                case 'refresh':
-                    getEnterprise();
+                case 'add':
+                    window.location.href = "./lawdialog.html";
                     break;
                 case 'update':
                     if (data.length === 0) {
@@ -17,49 +30,56 @@
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        console.log(data);
-                        layer.confirm('是否通过审核?', {
-                            btn: ['通过','未通过'] //按钮
-                        }, function(){
-                            // layer.msg('的确很重要', {icon: 1});
-                            updateEnterprise(data[0].id,'1');
-
-                        }, function(){
-                            
-                            updateEnterprise(data[0].id,'2');
-
-                        });
-
+                        // layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                         window.location.href = "./lawdialog.html?id="+data[0].id;
                     }
                     break;
-              
+                case 'delete':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        for(var i=0;i<data.length;i++){
+                            delBasSafetystandards(data[i].id);
+                        }
+                    }
+                    break;
             };
         });
-        function updateEnterprise(id,auditstaus){
-            handleAjax('approval/updateProduct',
-            {
-                id:id,
-                auditstaus:auditstaus,
-            }, "post").done(function(resp) {
-                console.log(resp);
-                
-                layer.msg('审批成功');
-                getEnterprise();
-                
+
+
+        // 删除
+        function delBasSafetystandards(id){
+            handleAjax('laws/delBasLawsregulations', { id: id }, "POST").done(function(resp) {
+                console.log(resp)
+                layer.msg('删除成功');
+                setTimeout(function(){
+                    getBasSafetystandards();
+                },1500)
                 return
             }).fail(function(err) {
                 console.log(err)
-
-            })
+            });
         }
-        getEnterprise();
+        getBasSafetystandards();
         //获取列表
-        function getEnterprise(){
+        function getBasSafetystandards(){
+            var lawname = document.querySelector('#lawname').value;
+            var documentunit = document.querySelector('#documentunit').value;
+            var lawtype = document.querySelector('#lawtype').value;
+            var imptimeq = document.querySelector('#imptimeq').value+" " + "00:00:00";
+            var imptimeh = document.querySelector('#imptimeh').value+" " + "00:00:00";
+
             table.render({
                 elem: '#test',
-                url: base + "approval/getProduct",
+                url: base + "laws/getBasLawsregulations",
                 method: "GET",
-                where: {},
+                where: {
+                    lawname:lawname,
+                    documentunit:documentunit,
+                    lawtype:lawtype,
+                    imptimeq:imptimeq,
+                    imptimeh:imptimeh
+                },
                 headers: {
                     Authorization: "Bearer" + " " + sessions
                 },
@@ -113,42 +133,44 @@
                         type: 'numbers'
                     },
                     {
-                        field: 'productname',
-                        title: '商品名称',
+                        field: 'lawname',
+                        title: '法规名称',
                         align: "center",
                         minWidth: 150
                     },
                     {
-                        title: '审核类型',
+                        field: 'documentunit',
+                        title: '发文单位',
                         align: "center",
                         minWidth: 150,
-                        templet: function(d) {
-                            if(d.enterprisename==null){
-                                return '注册审核'
-                            }else{
-                                return '修改审核'
-                            }
-                        }
                     },
                     {
-                        field: 'createon',
-                        title: '新建时间',
+                        field: 'lawtype',
+                        title: '法规类别',
                         align: "center",
-                        minWidth: 150
-                    },{
-                        field: 'createname',
+                        minWidth: 150,
+                    },
+                    {
+                        field: 'imptime',
+                        title: '实施日期',
+                        align: "center",
+                        minWidth: 150,
+                    },
+                    {
+                        field: 'approvaltime',
+                        title: '批准日期',
+                        align: "center",
+                        minWidth: 150,
+                    },
+                    {
+                        field: 'inputpeople',
                         title: '录入人',
                         align: "center",
-                        minWidth: 150
-                    },{
-                        field: 'enterprisename',
-                        title: '录入企业',
-                        align: "center",
-                        minWidth: 150
-                    }]
+                        minWidth: 150,
+                    },
+                   ]
                 ]
             });
         }
-       
     });
 })()

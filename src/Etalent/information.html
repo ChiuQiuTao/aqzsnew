@@ -33,9 +33,9 @@
                         <div class="layui-input-inline">
                             <select name="modules" lay-verify="required" lay-search="" id="experttype">
                                 <option value="">全部</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
+                                <option value="指导型">指导型</option>
+                                <option value="应急型">应急型</option>
+                                <option value="指导型和应急型">指导型和应急型</option>
                             </select>
                         </div>
                     </div>
@@ -53,9 +53,12 @@
 
 
                 <div class="select-btn">
-                    <div class="select-btn-item">
-                        查询
-                    </div>
+                        <div class="select-btn-item" id="selectbtn">
+                            查询
+                        </div>
+                        <div class="select-btn-item" id="resetbtn">
+                            重置
+                        </div>
                 </div>
             </div>
 

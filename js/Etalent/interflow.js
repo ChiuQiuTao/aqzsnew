@@ -2,14 +2,27 @@
     layui.use('table', function() {
         var table = layui.table,
             $ = layui.jquery;
-
+            laydate=layui.laydate
+        //时间
+        laydate.render({
+            elem: '#createonq' //指定元素 
+        });
+        laydate.render({
+            elem: '#createonh' //指定元素 
+        });
+        document.querySelector('#selectbtn').addEventListener('click',function(){
+            getBasInfoexchange();
+        })
+        document.querySelector('#resetbtn').addEventListener('click',function(){
+            window.location.reload();
+        })
         //监听事件
         table.on('toolbar(testdome)', function(obj) {
             var checkStatus = table.checkStatus(obj.config.id),
                 data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
-                case 'refresh':
-                    getEnterprise();
+                case 'add':
+                    window.location.href = "./dialog/interflowdialog.html";
                     break;
                 case 'update':
                     if (data.length === 0) {
@@ -17,49 +30,49 @@
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        console.log(data);
-                        layer.confirm('是否通过审核?', {
-                            btn: ['通过','未通过'] //按钮
-                        }, function(){
-                            // layer.msg('的确很重要', {icon: 1});
-                            updateEnterprise(data[0].id,'1');
-
-                        }, function(){
-                            
-                            updateEnterprise(data[0].id,'2');
-
-                        });
-
+                        // layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                         window.location.href = "./dialog/interflowdialog.html?id="+data[0].id;
                     }
                     break;
-              
+                case 'delete':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        for(var i=0;i<data.length;i++){
+                            delBasInfoexchange(data[i].id);
+                        }
+                    }
+                    break;
             };
         });
-        function updateEnterprise(id,auditstaus){
-            handleAjax('approval/updateProduct',
-            {
-                id:id,
-                auditstaus:auditstaus,
-            }, "post").done(function(resp) {
-                console.log(resp);
-                
-                layer.msg('审批成功');
-                getEnterprise();
-                
+
+
+        // 删除
+        function delBasInfoexchange(id){
+            handleAjax('expert/delBasInfoexchange', { id: id }, "POST").done(function(resp) {
+                console.log(resp)
+                layer.msg('删除成功');
+                setTimeout(function(){
+                    getBasInfoexchange();
+                },1500)
                 return
             }).fail(function(err) {
                 console.log(err)
 
-            })
+            });
         }
-        getEnterprise();
+        getBasInfoexchange();
         //获取列表
-        function getEnterprise(){
+        function getBasInfoexchange(){
+            var createonq = document.querySelector('#createonq').value+" " + "00:00:00";
+            var createonh = document.querySelector('#createonh').value+" " + "00:00:00";
+            var createname = document.querySelector('#createname').value;
+            var title = document.querySelector('#title').value;
             table.render({
                 elem: '#test',
-                url: base + "approval/getProduct",
+                url: base + "expert/getBasInfoexchange",
                 method: "GET",
-                where: {},
+                where: {createonq:createonq,createonh:createonh,createname:createname,title:title},
                 headers: {
                     Authorization: "Bearer" + " " + sessions
                 },
@@ -113,42 +126,19 @@
                         type: 'numbers'
                     },
                     {
-                        field: 'productname',
-                        title: '商品名称',
+                        field: 'title',
+                        title: '标题',
                         align: "center",
                         minWidth: 150
                     },
                     {
-                        title: '审核类型',
+                        field: 'createname',
+                        title: '专家名称',
                         align: "center",
                         minWidth: 150,
-                        templet: function(d) {
-                            if(d.enterprisename==null){
-                                return '注册审核'
-                            }else{
-                                return '修改审核'
-                            }
-                        }
-                    },
-                    {
-                        field: 'createon',
-                        title: '新建时间',
-                        align: "center",
-                        minWidth: 150
-                    },{
-                        field: 'createname',
-                        title: '录入人',
-                        align: "center",
-                        minWidth: 150
-                    },{
-                        field: 'enterprisename',
-                        title: '录入企业',
-                        align: "center",
-                        minWidth: 150
                     }]
                 ]
             });
         }
-       
     });
 })()
