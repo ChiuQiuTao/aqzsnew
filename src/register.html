@@ -12,159 +12,174 @@
     <link rel="stylesheet" href="../css/register.css">
 </head>
 
-<body>    
+<body>
     <form class="layui-form" action="">
-    <div class="logo">供应链协同管理平台</div>
-    <div class="head">
-        注册账号
-    </div>
+        <div class="logo">供应链协同管理平台</div>
+        <div class="head">
+            注册账号
+        </div>
 
-    <div class="input  jump2-1">
-        <div class="item itemw">
-            <div class="item-txt">
-                营业执照号:
+        <div class="input  jump2-1">
+            <div class="item itemw">
+                <div class="item-txt">
+                    专家姓名:
+                </div>
+                <input type="text" placeholder="专家名称" class="layui-input  experts">
             </div>
-            <input type="text" placeholder="请输入企业营业执照号" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                企业名称:
+            <div class="item itemw">
+                <div class="item-txt">
+                    电话:
+                </div>
+                <input type="text" placeholder="请输入您的联系电话" class="layui-input  phone" maxlength="11">
             </div>
-            <input type="text" placeholder="请输入企业名称" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                所在地区:
-            </div>
-            <!-- <input type="text" placeholder="请输入您的验证号" class="layui-input" style="width:180px;margin-right: 30px;">
+            <!-- <div class="item itemw">
+                <div class="item-txt">
+                    所在地区:
+                </div>
+                 <input type="text" placeholder="请输入您的验证号" class="layui-input" style="width:180px;margin-right: 30px;">
             <button class="times btns-item">
                 发送
-            </button> -->
-            <div class="layui-inline-sel layui-input-block">
-                <select name="country" lay-filter="aihao" id='state'>
+            </button> 
+                <div class="layui-inline-sel layui-input-block">
+                    <select name="country" lay-filter="aihao" id='state'>
                     <option value="0086">中国</option>
                 </select>
 
-                <select name="province" lay-filter="province" class="province" id='province'>
+                    <select name="province" lay-filter="province" class="province" id='province'>
                     <option value="">省</option>
                 </select>
 
-                <select name="city" lay-filter="city" class="city" id='city'>
+                    <select name="city" lay-filter="city" class="city" id='city'>
                     <option value="">市</option>
                 </select>
 
-                <select name="area" lay-filter="area" class="area" id='district'>
+                    <select name="area" lay-filter="area" class="area" id='district'>
                     <option value="">区</option>
                 </select>
-            </div>
-        </div>
+                </div> -->
 
-        <div class="item itemw">
-            <div class="item-txt">
-                详细地址:
-            </div>
-            <input type="text" placeholder="请输入企业详细地址" class="layui-input">
-        </div>
 
-        <div class="item itemw">
-            <div class="item-txt">
-                法定负责人:
+            <div class="item itemw">
+                <div class="item-txt">
+                    邮箱:
+                </div>
+                <input type="text" placeholder="请输入您的邮箱" class="layui-input  email">
             </div>
-            <input type="text" placeholder="请输入您的企业法定负责人" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                企业类型:
-            </div>
-            <input type="text" placeholder="请输入您的企业类型" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                经营范围:
-            </div>
-            <input type="text" placeholder="请输入您的经营范围" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                邮件:
-            </div>
-            <input type="text" placeholder="请输入您的邮件" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                联系电话:
-            </div>
-            <input type="text" placeholder="请输入您的联系电话" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                固定电话:
-            </div>
-            <input type="text" placeholder="请输入您的固定电话" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                传真:
-            </div>
-            <input type="text" placeholder="请输入您的传真号码" class="layui-input">
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                是否为中新园区企业:
-            </div>
-            <div class="layui-input-block" style="margin-left:0;">
-                <input type="checkbox" lay-skin="primary" title="是"  lay-filter="earlywarning" id='earlywarning'>
-            </div>
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                进出口权:
-            </div>
-            <div class="layui-input-block" style="margin-left:0;">
-                <input type="checkbox" lay-skin="primary" title="是否有进出口权"  lay-filter="earlywarning" id='earlywarning'>
-            </div>
-        </div>
 
-        <div class="border">
-            <div class="border-item">
-                <div class="btns-item pres btns-add" id=''>添加</div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    选择性别:
+                </div>
+                <div class="secs" style="margin-left: 20px;">
+                    <input style="width:auto;" type="radio" name="sex" value="男" title="男">
+                    <input style="width:auto;" type="radio" name="sex" value="女" title="女">
+                </div>
+
             </div>
-            <div class="border-item">
-                <div class="item itemb">
-                    <div class="item-txt">
-                        出口地:
+            <div class="item itemw">
+                <div class="item-txt">
+                    出生年月日:
+                </div>
+                <input type="text" placeholder="请输入您的出生年月日" class="layui-input   born">
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    专家类别:
+                </div>
+                <input type="text" placeholder="请输入您的类别，如：指导性、应急性、指导性和应急性" class="layui-input  category">
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    专业领域:
+                </div>
+                <input type="text" placeholder="请输入您的专业领域" class="layui-input   field">
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    职称:
+                </div>
+                <input type="text" placeholder="请输入您的职称" class="layui-input  Thtitle">
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    国籍:
+                </div>
+                <input type="text" placeholder="请输入您的国籍" class="layui-input  nationality">
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    证件号码:
+                </div>
+                <input type="text" placeholder="请输入您的传真号码" class="layui-input   certificate">
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    专家介绍:
+                </div>
+                <textarea type="text" placeholder="请输入您的介绍" class="layui-input   introduce" style="width: 300px;
+                margin-left: 15px;
+                height: 100px;"></textarea>
+            </div>
+            <!-- <div class="item itemw">
+                <div class="item-txt">
+                    是否为中新园区企业:
+                </div>
+                <div class="layui-input-block" style="margin-left:0;">
+                    <input type="checkbox" lay-skin="primary" title="是" lay-filter="earlywarning" id='earlywarning'>
+                </div>
+            </div>
+            <div class="item itemw">
+                <div class="item-txt">
+                    进出口权:
+                </div>
+                <div class="layui-input-block" style="margin-left:0;">
+                    <input type="checkbox" lay-skin="primary" title="是否有进出口权" lay-filter="earlywarning" id='earlywarning'>
+                </div>
+            </div> -->
+
+            <!-- <div class="border">
+                <div class="border-item">
+                    <div class="btns-item pres btns-add" id=''>添加</div>
+                </div>
+                <div class="border-item">
+                    <div class="item itemb">
+                        <div class="item-txt">
+                            出口地:
+                        </div>
+                        <input type="text" placeholder="请输入出口地" class="layui-input layui-input-b">
                     </div>
-                    <input type="text" placeholder="请输入出口地" class="layui-input layui-input-b">
-                </div>
-                <div class="item itemb">
-                    <div class="item-txt">
-                        出口产品:
+                    <div class="item itemb">
+                        <div class="item-txt">
+                            出口产品:
+                        </div>
+                        <input type="text" placeholder="请输入出口产品" class="layui-input layui-input-b">
                     </div>
-                    <input type="text" placeholder="请输入出口产品" class="layui-input layui-input-b">
+                </div>
+            </div> -->
+            <div class="item itemw">
+                <div class="item-txt">
+                    专业资格证:
+                </div>
+                <div class="layui-input-inline">
+                    <div class="layui-upload" style="display:flex">
+                        <input type="file" class="filess">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="item itemw">
-            <div class="item-txt">
-                企业图片:
-            </div>
-            <div class="layui-input-inline">
-                <div class="layui-upload" style="display:flex">
-                    <button type="button" class="layui-btn layui-btn-normal selectImg" style="margin-right:10px;">选择文件</button>
-                </div>
-            </div>
+
         </div>
         <div class="btns">
-            <div class="btns-item pres">上一步</div>
-            <div class="btns-item nsees">下一步</div>
+            <div class="btns-item pres  save">确定</div>
+            <div class="btns-item nsees">取消</div>
         </div>
-    </div>
+        </div>
     </form>
 </body>
 <script src="../js/jquery.min.js"></script>
 <script src="../public/dist/layui.js"></script>
+<script src="../js/apl.js"></script>
 <script>
-layui.use(['upload', 'form', 'element', 'table', "layer", "laydate", "util"], function() {
+    layui.use(['upload', 'form', 'element', 'table', "layer", "laydate", "util"], function() {
         var $ = layui.jquery,
             table = layui.table,
             layer = layui.layer,
@@ -172,28 +187,117 @@ layui.use(['upload', 'form', 'element', 'table', "layer", "laydate", "util"], fu
             util = layui.util,
             form = layui.form,
             element = layui.element,
+            obj = {},
             upload = layui.upload;
 
-            var dels;
-            if(document.querySelector('.btns-del')){
-                dels=document.querySelectorAll('.btns-del');
+        var dels;
+        if (document.querySelector('.btns-del')) {
+            dels = document.querySelectorAll('.btns-del');
+        }
+        $(".border-item>.btns-add").click(function() {
+            $(".border").append('<div class="border-item"><div class="item itemb"><div class="item-txt">出口地:</div><input type="text" placeholder="请输入出口地" class="layui-input layui-input-b"></div><div class="item itemb"><div class="item-txt">出口产品:</div><input type="text" placeholder="请输入出口产品" class="layui-input layui-input-b"></div><div class="btns-item pres btns-del">删除</div></div>')
+            dels = document.querySelectorAll('.btns-del');
+            for (var i = 0; i < dels.length; i++) {
+                (function(i) {
+                    dels[i].addEventListener('click', function() {
+                        if (dels[i].parentNode.parentNode) {
+                            dels[i].parentNode.parentNode.removeChild(dels[i].parentNode);
+                        }
+                    })
+                })(i)
             }
-            $(".border-item>.btns-add").click(function(){
-                $(".border").append('<div class="border-item"><div class="item itemb"><div class="item-txt">出口地:</div><input type="text" placeholder="请输入出口地" class="layui-input layui-input-b"></div><div class="item itemb"><div class="item-txt">出口产品:</div><input type="text" placeholder="请输入出口产品" class="layui-input layui-input-b"></div><div class="btns-item pres btns-del">删除</div></div>')
-                dels=document.querySelectorAll('.btns-del');
-                for(var i=0;i<dels.length;i++){
-                    (function(i){
-                        dels[i].addEventListener('click',function(){
-                            if(dels[i].parentNode.parentNode){
-                                dels[i].parentNode.parentNode.removeChild(dels[i].parentNode);
-                            }
-                        })
-                    })(i)
-                }
-            })
-            
-            
-})
+        })
+
+        $(".filess").on("change", function() {
+            var formData = new FormData();
+            var textd = $(this)[0].files[0];
+            formData.append("accessory", textd);
+            obj.accessory = formData;
+        })
+
+        //确定
+        $(".save").click(function() {
+            if ($(".experts").val() == "") {
+                alerts("请输入专家姓名")
+                return
+            }
+            if ($(".phone").val() == "") {
+                alerts("请输入电话")
+                return
+            }
+            if ($(".email").val() == "") {
+                alerts("请输入邮箱")
+                return
+            }
+            if ($('input:radio[name="sex"]:checked').val() == undefined) {
+                alerts("请选择性别")
+                return
+            }
+            if ($(".born").val() == "") {
+                alerts("请输入出生时间")
+                return
+            }
+            if ($(".category").val() == "") {
+                alerts("请输入专家类别")
+                return
+            }
+            if ($(".field").val() == "") {
+                alerts("请输入专业领域")
+                return
+            }
+            if ($(".Thtitle").val() == "") {
+                alerts("请输入专家职称")
+                return
+            }
+            if ($(".nationality").val() == "") {
+                alerts("请输入国籍")
+                return
+            }
+            if ($(".certificate").val() == "") {
+                alerts("请输入证件号码")
+                return
+            }
+            if ($(".introduce").val() == "") {
+                alerts("请输入介绍")
+                return
+            }
+            obj = {
+                truename: $(".experts").val(),
+                telno: $(".phone").val(),
+                email: $(".email").val(),
+                sex: $('input:radio[name="sex"]:checked').val(),
+                datebirth: $(".born").val(),
+                experttype: $(".category").val(),
+                professionalfieldname: $(".field").val(),
+                titlename: $(".Thtitle").val(),
+                nationalityname: $(".nationality").val(),
+                documenttypename: "身份证",
+                documentno: $(".certificate").val(),
+                photo: "",
+                remark: $(".introduce").val(),
+            }
+
+
+            handleAjax('expert/addBasExperts', obj, "POST").done(function(resp) {
+                console.log(resp)
+                layer.msg('注册成功！', {
+                    icon: 1,
+                    time: 2000
+                });
+
+                window.location.href = "../src/login.html"
+                return
+            }).fail(function(err) {
+                console.log(err)
+            });
+        })
+
+        //取消
+        $(".nsees").click(function() {
+            window.location.href = "../src/login.html";
+        })
+
+    })
 </script>
 
 </html>

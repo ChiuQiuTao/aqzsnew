@@ -56,10 +56,10 @@
             </div>
             <div class="password">
                 <div class="password-f">
-                    <a href="">忘记密码</a>
+                    <!-- <a href="">忘记密码</a> -->
                 </div>
                 <div class="password-f">
-                    <a href="">专家注册</a>
+                    <a href="../src/register.html">专家注册</a>
                 </div>
             </div>
             <button class="login">登录</button>
@@ -76,7 +76,6 @@
 <script src="../public/dist/layui.js"></script>
 <script src="../js/apl.js"></script>
 <script>
-    // var verifyCode = new GVerify("v_container");
     layui.use('layer', function() { //独立版的layer无需执行这一句
         var $ = layui.jquery,
             layer = layui.layer; //独立版的layer无需执行这一句
@@ -98,16 +97,14 @@
         /*是否存在企业id*/
         function getUser() {
             noAjax('user/getUser', {}, "GET").done(function(resp) {
-                console.log(resp);
                 window.location.href = "../index.html";
-                return
                 // if (resp.enterpriseId && resp.enterpriseId != "") {
                 //     window.location.href = "../index.html";
                 //     var idss = resp.enterpriseId;
                 //     localStorage.setItem("enterpriseId", idss);
 
                 // } else {
-                //     // window.location.href = "./company.html";
+                //     window.location.href = "./company.html";
                 // }
                 return
             }).fail(function(err) {
@@ -115,15 +112,21 @@
                 return
             });
         }
-       
+
         /*事件*/
         function events() {
             if (verify($(".login-use"), "请输入用户名!")) {
 
                 if ($(".login-pass").val() == "") {
                     alerts("请输入密码！")
-                } 
-                else {
+                } else {
+                    if ($(".bg").width() != 208) {
+                        layer.msg('请拖拉滑块验证', {
+                            time: 1000
+                        });
+                        return
+                    }
+
                     handleAjax('login', {
                         username: $(".login-use").val(),
                         password: $(".login-pass").val()

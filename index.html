@@ -21,7 +21,7 @@
         <div class="index-topl">
             <div class="index-toplz">
                 <p>智慧管理服务平台</p>
-                <span>欢迎 <label>黄焱（1053385537）</label>用户登录供应链协同管理平台，这是您的第 <i>10</i>次登录</span>
+                <span>欢迎 <label  class="useaa">黄焱（1053385537）</label>用户登录供应链协同管理平台</span>
             </div>
         </div>
         <div class="index-topr">
@@ -35,7 +35,7 @@
                     <img src="./img/colorr.png" alt="">
                 </div>
                 <div class="layui-nav-item two-in-data">
-                    <a href="javascript:;">
+                    <a href="javascript:;" class="admins">
                         管理员（admin）
                     </a>
                     <div></div>
@@ -74,7 +74,7 @@
                                 <div class="nav-close-item" id='closeall'>关闭所有</div>
                             </div>
                         </div>
-                        <div class="nav-exit">
+                        <div class="nav-exit  exitss" style="cursor: pointer;">
                             <i class="iconfont icon-tuichu nav-i"></i> 退出
                         </div>
                     </div>
@@ -85,8 +85,6 @@
                 <div class="nav-background">
                 </div>
             </div>
-
-
         </div>
         <!-- 上/头部 -->
         <div class="layui-side layui-bg-cyan two-in-menu">
@@ -135,6 +133,7 @@
     <script src="../../public/dist/layui.js"></script>
     <script>
         window.onresize = function() {
+
             getClientHeight();
         };
         getClientHeight();
@@ -222,8 +221,6 @@
                 }
             });
             element.render('nav');
-
-
         });
     </script>
 
@@ -232,15 +229,35 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/apl.js"></script>
 <script>
-    // handleAjax('task/getAll', {
+    //判断是否有sessions
+    if (sessions == null || sessions == "") {
+        window.location.href = "./src/login.html";
+    }
 
-    // }, "GET").done(function(resp) {
-    //     console.log(resp)
-    // }).fail(function(err) {
-    //     console.log(err)
-    // });
-</script>
-<script>
+    //点击退出
+    document.querySelector('.exitss').addEventListener("click", function() {
+        window.location.href = "./src/login.html";
+    });
+
+
+    //用户信息
+    layui.use('table', function() {
+        var table = layui.table,
+            $ = layui.jquery;
+        console.log(sessions)
+
+        noAjax('user/getUser', {}, "GET").done(function(resp) {
+
+            $(".useaa").text(resp.username);
+            $(".admins").text('管理员(' + resp.username + ')');
+            return
+        }).fail(function(err) {
+            console.log(err)
+        });
+
+    })
+
+
     // 左右滑动导航
     var moveLeft = document.querySelector('.nav-left');
     var moveRight = document.querySelector('.nav-right');

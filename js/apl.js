@@ -1,13 +1,14 @@
 var base = "http://47.98.167.96:9194/";
+var bas = "http://192.168.163.100:9193";
 var jq = jQuery.noConflict();
 var sessions = sessionStorage.getItem('keyssname');
 
+
+
 function ajax(url, param, type, contentType) {
-
-    // if (sessions == "" && url != "login") {
-    //     window.location.href = "../src/login.html";
-    // }
-
+    if (sessions == "" && url != "login") {
+        window.location.href = "../src/login.html";
+    }
     if (contentType == 'utf-8') {
         return jq.ajax({
             url: base + url,
@@ -35,7 +36,6 @@ function ajax(url, param, type, contentType) {
 
 
 function handleAjax(url, param, type, contentType) {
-
     return ajax(url, param, type, contentType).then(function(resp) {
         // 成功回调
         if (typeof resp == 'string') {
